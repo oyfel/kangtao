@@ -1,520 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KANGTAO ARMS — Forged for the Future of Force</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --void:#0a0a0f;
-    --panel:#13131c;
-    --panel-2:#1a1a26;
-    --signal:#ff003c;
-    --signal-dim:#7a0420;
-    --cyan:#00e8ff;
-    --steel:#c9c9d4;
-    --steel-dim:#6b6b78;
-    --line:rgba(201,201,212,0.12);
-    --line-bright:rgba(0,232,255,0.25);
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--void);
-    color:var(--steel);
-    font-family:'Inter',sans-serif;
-    overflow-x:hidden;
-    position:relative;
-  }
-  body::before{
-    content:'';
-    position:fixed;
-    inset:0;
-    background-image:
-      repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0px, transparent 1px, transparent 2px, rgba(255,255,255,0.012) 3px);
-    pointer-events:none;
-    z-index:9999;
-    opacity:0.5;
-  }
-  body::after{
-    content:'';
-    position:fixed;
-    inset:0;
-    background:radial-gradient(ellipse at 50% -10%, rgba(255,0,60,0.08), transparent 60%);
-    pointer-events:none;
-    z-index:1;
-  }
-  .display{font-family:'Rajdhani',sans-serif; text-transform:uppercase; letter-spacing:0.02em;}
-  .mono{font-family:'JetBrains Mono',monospace;}
-  a{color:inherit; text-decoration:none;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work In Progress</title>
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --surface-color: #1a1a1a;
+            --orange-primary: #ff6600;
+            --orange-hover: #e05500;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+        }
 
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
-  }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-  /* ===== NAV ===== */
-  nav{
-    position:fixed; top:0; left:0; right:0; z-index:500;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 5vw;
-    background:rgba(10,10,15,0.75);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav-logo{display:flex; align-items:center; gap:10px;}
-  .nav-logo svg{width:30px; height:30px;}
-  .nav-logo span{font-family:'Rajdhani'; font-weight:700; font-size:1.05rem; letter-spacing:0.12em;}
-  .nav-links{display:flex; gap:36px; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; font-weight:600;}
-  .nav-links a{color:var(--steel-dim); transition:color 0.25s; position:relative;}
-  .nav-links a:hover, .nav-links a:focus-visible{color:var(--cyan);}
-  .nav-links a:focus-visible{outline:1px solid var(--cyan); outline-offset:4px;}
-  @media (max-width:780px){ .nav-links{display:none;} }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
 
-  /* ===== HERO ===== */
-  .hero{
-    min-height:100vh;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    position:relative; padding:140px 5vw 80px;
-    text-align:center;
-    border-bottom:1px solid var(--line);
-  }
-  .hero-grid{
-    position:absolute; inset:0;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size:64px 64px;
-    mask-image:radial-gradient(ellipse 70% 60% at 50% 35%, black 10%, transparent 75%);
-    opacity:0.5;
-  }
-  .boot-line{
-    font-family:'JetBrains Mono'; font-size:0.72rem; color:var(--cyan);
-    letter-spacing:0.08em; opacity:0; margin-bottom:22px; position:relative; z-index:2;
-    animation:fadeUp 0.6s ease forwards 0.1s;
-  }
-  .boot-line::before{content:'> '; color:var(--signal);}
-  .hero-mark{
-    width:120px; height:120px; margin-bottom:28px; position:relative; z-index:2;
-    opacity:0; animation:fadeUp 0.7s ease forwards 0.3s;
-  }
-  .hero h1{
-    font-size:clamp(2.6rem, 8vw, 6rem);
-    font-weight:700; line-height:0.96; letter-spacing:0.01em;
-    position:relative; z-index:2;
-    opacity:0; animation:fadeUp 0.7s ease forwards 0.45s;
-  }
-  .hero h1 .accent{color:var(--signal);}
-  .hero-sub{
-    margin-top:22px; font-size:clamp(0.95rem,1.6vw,1.25rem);
-    color:var(--steel-dim); max-width:620px; font-weight:500;
-    letter-spacing:0.02em; position:relative; z-index:2;
-    opacity:0; animation:fadeUp 0.7s ease forwards 0.6s;
-  }
-  .slogan{
-    margin-top:34px; font-family:'Rajdhani'; font-weight:700;
-    font-size:clamp(1.1rem,2.4vw,1.6rem); letter-spacing:0.18em; text-transform:uppercase;
-    color:var(--steel); position:relative; z-index:2;
-    opacity:0; animation:fadeUp 0.7s ease forwards 0.75s;
-  }
-  .slogan .bar{display:inline-block; width:28px; height:2px; background:var(--signal); margin:0 14px 4px; vertical-align:middle;}
-  @keyframes fadeUp{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+        /* Subtle background glow effect */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--orange-primary);
+            filter: blur(150px);
+            opacity: 0.15;
+            top: 20%;
+            left: 20%;
+            z-index: 0;
+        }
 
-  .scroll-cue{
-    position:absolute; bottom:34px; left:50%; transform:translateX(-50%);
-    font-family:'JetBrains Mono'; font-size:0.68rem; color:var(--steel-dim);
-    letter-spacing:0.15em; display:flex; flex-direction:column; align-items:center; gap:8px;
-    z-index:2;
-  }
-  .scroll-cue .stick{width:1px; height:26px; background:linear-gradient(var(--cyan), transparent); animation:pulseDown 1.8s ease-in-out infinite;}
-  @keyframes pulseDown{ 0%,100%{opacity:0.2;} 50%{opacity:1;} }
+        body::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--orange-primary);
+            filter: blur(150px);
+            opacity: 0.1;
+            bottom: 20%;
+            right: 20%;
+            z-index: 0;
+        }
 
-  /* ===== SECTION SHELL ===== */
-  section{padding:110px 5vw; position:relative; border-bottom:1px solid var(--line);}
-  .section-head{display:flex; align-items:baseline; gap:18px; margin-bottom:56px; flex-wrap:wrap;}
-  .section-tag{font-family:'JetBrains Mono'; font-size:0.72rem; color:var(--signal); letter-spacing:0.15em;}
-  .section-head h2{font-family:'Rajdhani'; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:700; letter-spacing:0.01em; text-transform:uppercase;}
-  .section-head .rule{flex:1; height:1px; background:var(--line); min-width:40px;}
-  .container{max-width:1180px; margin:0 auto;}
+        .container {
+            background: var(--surface-color);
+            border: 1px solid #2a2a2a;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+        }
 
-  /* ===== ABOUT ===== */
-  .about-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:start;}
-  @media (max-width:860px){ .about-grid{grid-template-columns:1fr;} }
-  .about-grid p{font-size:1.02rem; line-height:1.85; color:var(--steel); margin-bottom:20px;}
-  .about-grid p strong{color:#fff; font-weight:600;}
-  .stat-panel{
-    background:var(--panel); border:1px solid var(--line);
-    border-left:2px solid var(--signal);
-    padding:28px 26px;
-  }
-  .stat-row{display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--line);}
-  .stat-row:last-child{border-bottom:none;}
-  .stat-row .k{font-family:'JetBrains Mono'; font-size:0.78rem; color:var(--steel-dim); letter-spacing:0.06em;}
-  .stat-row .v{font-family:'Rajdhani'; font-weight:700; font-size:1rem; color:var(--cyan);}
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-  /* ===== DIVISIONS (Kangtao + QianT) ===== */
-  .div-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
-  @media (max-width:860px){ .div-grid{grid-template-columns:1fr;} }
-  .div-card{
-    background:linear-gradient(155deg, var(--panel), var(--panel-2));
-    border:1px solid var(--line); padding:38px 32px; position:relative; overflow:hidden;
-    transition:border-color 0.3s;
-  }
-  .div-card:hover{border-color:var(--line-bright);}
-  .div-card .corner{position:absolute; width:18px; height:18px; border:2px solid var(--signal); opacity:0.7;}
-  .div-card .corner.tl{top:-1px; left:-1px; border-right:none; border-bottom:none;}
-  .div-card .corner.br{bottom:-1px; right:-1px; border-left:none; border-top:none;}
-  .div-card-head{display:flex; align-items:center; gap:16px; margin-bottom:18px;}
-  .div-card-head svg{width:46px; height:46px; flex-shrink:0;}
-  .div-card-head h3{font-family:'Rajdhani'; font-size:1.4rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;}
-  .div-card-head .div-sub{font-family:'JetBrains Mono'; font-size:0.68rem; color:var(--steel-dim); letter-spacing:0.1em; margin-top:3px;}
-  .div-card p{font-size:0.95rem; line-height:1.75; color:var(--steel-dim);}
-  .div-tags{display:flex; gap:10px; margin-top:20px; flex-wrap:wrap;}
-  .div-tags span{font-family:'JetBrains Mono'; font-size:0.66rem; color:var(--cyan); border:1px solid var(--line-bright); padding:5px 10px; letter-spacing:0.06em;}
+        .logo span {
+            color: var(--orange-primary);
+        }
 
-  /* ===== SERVICES ===== */
-  .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
-  @media (max-width:860px){ .services-grid{grid-template-columns:1fr;} }
-  .service{background:var(--void); padding:36px 30px; transition:background 0.3s;}
-  .service:hover{background:var(--panel);}
-  .service .idx{font-family:'JetBrains Mono'; color:var(--signal); font-size:0.75rem; letter-spacing:0.1em;}
-  .service h3{font-family:'Rajdhani'; font-size:1.2rem; font-weight:700; margin:14px 0 12px; text-transform:uppercase; letter-spacing:0.03em;}
-  .service p{font-size:0.9rem; line-height:1.7; color:var(--steel-dim);}
+        .status-badge {
+            display: inline-block;
+            background: rgba(255, 102, 0, 0.1);
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            color: var(--orange-primary);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
 
-  /* ===== ARSENAL ===== */
-  .arsenal-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px;}
-  @media (max-width:860px){ .arsenal-grid{grid-template-columns:1fr;} }
-  .gun-card{
-    background:var(--panel); border:1px solid var(--line); padding:30px;
-    position:relative; transition:transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-  }
-  .gun-card:hover{ border-color:var(--signal); box-shadow:0 0 0 1px var(--signal-dim), 0 20px 40px -20px rgba(255,0,60,0.25); transform:translateY(-3px); }
-  .gun-top{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:18px;}
-  .gun-class{font-family:'JetBrains Mono'; font-size:0.66rem; color:var(--cyan); letter-spacing:0.12em; border:1px solid var(--line-bright); padding:4px 9px;}
-  .gun-id{font-family:'JetBrains Mono'; font-size:0.66rem; color:var(--steel-dim); letter-spacing:0.08em;}
-  .gun-card h3{font-family:'Rajdhani'; font-size:1.5rem; font-weight:700; letter-spacing:0.02em; margin-bottom:6px;}
-  .gun-card .gun-desc{font-size:0.88rem; color:var(--steel-dim); line-height:1.65; margin-bottom:20px; min-height:64px;}
-  .gun-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid var(--line);}
-  .gun-stats div{padding:14px 0 0; text-align:left;}
-  .gun-stats .label{font-family:'JetBrains Mono'; font-size:0.6rem; color:var(--steel-dim); letter-spacing:0.1em; display:block; margin-bottom:6px;}
-  .gun-stats .bar-track{height:4px; background:rgba(255,255,255,0.07); position:relative; overflow:hidden;}
-  .gun-stats .bar-fill{position:absolute; inset:0; background:var(--signal); transform:scaleX(0); transform-origin:left; transition:transform 0.8s cubic-bezier(.2,.8,.2,1);}
-  .gun-card:hover .bar-fill{transform:scaleX(1);}
+        @keyframes pulse {
+            0% { opacity: 0.8; box-shadow: 0 0 0 0 rgba(255, 102, 0, 0.2); }
+            50% { opacity: 1; box-shadow: 0 0 0 10px rgba(255, 102, 0, 0); }
+            100% { opacity: 0.8; box-shadow: 0 0 0 0 rgba(255, 102, 0, 0); }
+        }
 
-  /* ===== LOCATIONS ===== */
-  .loc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-  @media (max-width:860px){ .loc-grid{grid-template-columns:1fr;} }
-  .loc-card{border:1px solid var(--line); padding:30px 26px; background:var(--panel);}
-  .loc-card .tag{font-family:'JetBrains Mono'; font-size:0.66rem; color:var(--signal); letter-spacing:0.1em;}
-  .loc-card h3{font-family:'Rajdhani'; font-weight:700; font-size:1.25rem; margin:10px 0 14px; letter-spacing:0.02em;}
-  .loc-card p{font-size:0.88rem; color:var(--steel-dim); line-height:1.7; margin-bottom:4px;}
-  .loc-card .meta{margin-top:16px; padding-top:16px; border-top:1px solid var(--line); font-family:'JetBrains Mono'; font-size:0.72rem; color:var(--cyan);}
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
 
-  /* ===== CONTACT / FOOTER ===== */
-  .cta{
-    text-align:center; padding:120px 5vw;
-    background:radial-gradient(ellipse at 50% 50%, rgba(255,0,60,0.06), transparent 70%);
-  }
-  .cta h2{font-family:'Rajdhani'; font-size:clamp(2rem,5vw,3.4rem); font-weight:700; text-transform:uppercase; margin-bottom:18px;}
-  .cta p{color:var(--steel-dim); max-width:520px; margin:0 auto 36px; font-size:1rem; line-height:1.7;}
-  .btn{
-    display:inline-flex; align-items:center; gap:10px;
-    font-family:'Rajdhani'; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
-    font-size:0.85rem; padding:16px 34px;
-    background:var(--signal); color:#fff; border:1px solid var(--signal);
-    transition:background 0.25s, color 0.25s;
-  }
-  .btn:hover, .btn:focus-visible{background:transparent; color:var(--signal);}
-  .btn:focus-visible{outline:2px solid var(--cyan); outline-offset:3px;}
+        p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
 
-  footer{padding:50px 5vw; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
-  footer .f-logo{display:flex; align-items:center; gap:10px;}
-  footer .f-logo svg{width:24px; height:24px;}
-  footer .f-logo span{font-family:'Rajdhani'; font-weight:700; letter-spacing:0.1em; font-size:0.9rem;}
-  footer .f-legal{font-family:'JetBrains Mono'; font-size:0.68rem; color:var(--steel-dim); letter-spacing:0.04em; line-height:1.6; max-width:560px;}
-</style>
+        /* Countdown Timer Styling */
+        .countdown {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2.5rem;
+            gap: 10px;
+        }
+
+        .countdown-item {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #2d2d2d;
+            padding: 1rem;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 70px;
+        }
+
+        .countdown-number {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--orange-primary);
+        }
+
+        .countdown-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+            display: block;
+        }
+
+        /* Interactive Form Styling */
+        .subscribe-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            background: #0d0d0d;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 4px;
+            transition: border-color 0.3s;
+        }
+
+        .input-group:focus-within {
+            border-color: var(--orange-primary);
+        }
+
+        input[type="email"] {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 0.8rem;
+            flex-grow: 1;
+            font-size: 0.95rem;
+        }
+
+        input[type="email"]::placeholder {
+            color: #555;
+        }
+
+        button {
+            background: var(--orange-primary);
+            color: white;
+            border: none;
+            outline: none;
+            padding: 0 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+            background: var(--orange-hover);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .message {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            min-height: 20px;
+            transition: color 0.3s;
+        }
+
+        .success { color: #00ff66; }
+        .error { color: #ff3333; }
+    </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">
-    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20 2L36 11V29L20 38L4 29V11L20 2Z" stroke="#ff003c" stroke-width="1.5"/>
-      <path d="M20 2L36 11V29L20 38" stroke="#00e8ff" stroke-width="1" opacity="0.5"/>
-      <path d="M13 14H17V26H13V14Z" fill="#ff003c"/>
-      <path d="M17 19.5L25 14V26L17 19.5Z" fill="#ff003c"/>
-    </svg>
-    <span>KANGTAO ARMS</span>
-  </div>
-  <div class="nav-links">
-    <a href="#about">Company</a>
-    <a href="#divisions">Divisions</a>
-    <a href="#services">Services</a>
-    <a href="#arsenal">Arsenal</a>
-    <a href="#locations">Locations</a>
-  </div>
-</nav>
+    <div class="container">
+        <div class="logo">ORANGE<span>BLACK</span></div>
+        <div class="status-badge">Under Construction</div>
 
-<header class="hero">
-  <div class="hero-grid" aria-hidden="true"></div>
-  <div class="boot-line mono">SYSTEM // KANGTAO SECURE NETWORK — CLEARANCE GRANTED</div>
-  <div class="hero-mark">
-    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M60 6L108 32V88L60 114L12 88V32L60 6Z" stroke="#ff003c" stroke-width="2"/>
-      <path d="M60 6L108 32V88L60 114" stroke="#00e8ff" stroke-width="1" opacity="0.55"/>
-      <path d="M40 42H50V78H40V42Z" fill="#ff003c"/>
-      <path d="M50 60L80 42V78L50 60Z" fill="#ff003c"/>
-      <circle cx="60" cy="60" r="3" fill="#00e8ff"/>
-    </svg>
-  </div>
-  <h1>KANGTAO<br><span class="accent">ARMS</span></h1>
-  <p class="hero-sub">A global force-projection conglomerate engineering small arms, exosystems, and security infrastructure for clients who cannot afford to lose.</p>
-  <p class="slogan">FORCE<span class="bar"></span>PROJECTED<span class="bar"></span>PERFECTED</p>
-  <div class="scroll-cue mono"><span>SCROLL</span><span class="stick"></span></div>
-</header>
+        <h2>We're cooking up something big.</h2>
+        <p>Our team is currently working hard to bring you a brand new web experience. Turn on notifications below to get notified the second we launch.</p>
 
-<section id="about">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-tag mono">// 01 — DOSSIER</span>
-      <h2>The Company</h2>
-      <div class="rule"></div>
-    </div>
-    <div class="about-grid">
-      <div>
-        <p><strong>Kangtao Arms</strong> is a vertically integrated weapons and security conglomerate, designing everything from sidearms to autonomous turret networks under one production roof. What began as a regional foundry contract now ships hardware to corporate security divisions, private military contractors, and federal procurement programs across three continents.</p>
-        <p>Every product line is built on the same operating principle: <strong>reliability under contested conditions</strong>. Kangtao engineers don't chase the flashiest spec sheet — they chase the gun that still cycles when the power's out, the rain hasn't stopped, and the client's life depends on the next trigger pull.</p>
-        <p>The company operates two primary brands under its corporate umbrella: <strong>Kangtao</strong>, the flagship line for tactical and combat hardware, and <strong>QianT</strong>, its precision and civilian-adjacent subsidiary focused on sidearms and concealable systems.</p>
-      </div>
-      <div class="stat-panel">
-        <div class="stat-row"><span class="k mono">FOUNDED</span><span class="v">CORPORATE ERA 04</span></div>
-        <div class="stat-row"><span class="k mono">HEADQUARTERS</span><span class="v">PACIFIC RIM SECTOR</span></div>
-        <div class="stat-row"><span class="k mono">PRODUCTION FACILITIES</span><span class="v">7 ACTIVE</span></div>
-        <div class="stat-row"><span class="k mono">PRIMARY SECTORS</span><span class="v">DEFENSE / SECURITY</span></div>
-        <div class="stat-row"><span class="k mono">SUBSIDIARY</span><span class="v">QIANT PRECISION</span></div>
-        <div class="stat-row"><span class="k mono">CLEARANCE TIER</span><span class="v">RESTRICTED — TIER 3</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="divisions">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-tag mono">// 02 — BRAND ARCHITECTURE</span>
-      <h2>Divisions</h2>
-      <div class="rule"></div>
-    </div>
-    <div class="div-grid">
-      <div class="div-card">
-        <span class="corner tl"></span><span class="corner br"></span>
-        <div class="div-card-head">
-          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 2L36 11V29L20 38L4 29V11L20 2Z" stroke="#ff003c" stroke-width="1.5"/>
-            <path d="M13 14H17V26H13V14Z" fill="#ff003c"/>
-            <path d="M17 19.5L25 14V26L17 19.5Z" fill="#ff003c"/>
-          </svg>
-          <div>
-            <h3>Kangtao</h3>
-            <div class="div-sub mono">FLAGSHIP — TACTICAL SYSTEMS</div>
-          </div>
+        <!-- Countdown Timer -->
+        <div class="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Mins</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Secs</span>
+            </div>
         </div>
-        <p>The parent brand and primary combat-hardware line: rifles, smart-targeting platforms, and heavy-duty security systems built for sustained field deployment. Kangtao-stamped hardware is the backbone of corporate security contracts worldwide.</p>
-        <div class="div-tags"><span>RIFLES</span><span>SMART SYSTEMS</span><span>TURRETS</span></div>
-      </div>
-      <div class="div-card">
-        <span class="corner tl"></span><span class="corner br"></span>
-        <div class="div-card-head">
-          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="20" cy="20" r="17" stroke="#00e8ff" stroke-width="1.5"/>
-            <path d="M20 8V32M11 14L29 26M29 14L11 26" stroke="#00e8ff" stroke-width="1.2" opacity="0.7"/>
-            <circle cx="20" cy="20" r="4" fill="#00e8ff"/>
-          </svg>
-          <div>
-            <h3>QianT</h3>
-            <div class="div-sub mono">SUBSIDIARY — PRECISION ARMS</div>
-          </div>
-        </div>
-        <p>Kangtao's precision subsidiary, spun up to serve the sidearm and concealable-weapon market with tighter tolerances and a sleeker design language. QianT pistols are favored where discretion matters as much as stopping power.</p>
-        <div class="div-tags"><span>PISTOLS</span><span>CONCEALABLES</span><span>PRECISION CALIBER</span></div>
-      </div>
+
+        <!-- Notification Form -->
+        <form class="subscribe-form" id="notifyForm" onsubmit="handleSubscribe(event)">
+            <div class="input-group">
+                <input type="email" id="emailInput" placeholder="Enter your email address" required>
+                <button type="submit">Notify Me</button>
+            </div>
+            <div class="message" id="formMessage"></div>
+        </form>
     </div>
-  </div>
-</section>
 
-<section id="services">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-tag mono">// 03 — CAPABILITIES</span>
-      <h2>Services</h2>
-      <div class="rule"></div>
-    </div>
-    <div class="services-grid">
-      <div class="service">
-        <div class="idx mono">SVC.01</div>
-        <h3>Hardware Manufacturing</h3>
-        <p>End-to-end design and production of firearms, exosuits, and tactical hardware, from prototyping through full-scale fabrication.</p>
-      </div>
-      <div class="service">
-        <div class="idx mono">SVC.02</div>
-        <h3>Corporate Security Contracts</h3>
-        <p>Equipment packages and standing-fleet maintenance agreements for private security divisions and contracted defense forces.</p>
-      </div>
-      <div class="service">
-        <div class="idx mono">SVC.03</div>
-        <h3>Smart-System Integration</h3>
-        <p>Targeting assistance, biometric locks, and networked turret defense systems built to integrate with existing client infrastructure.</p>
-      </div>
-      <div class="service">
-        <div class="idx mono">SVC.04</div>
-        <h3>Maintenance & Field Support</h3>
-        <p>Scheduled servicing, parts replacement, and on-site technician dispatch for deployed hardware under active contract.</p>
-      </div>
-      <div class="service">
-        <div class="idx mono">SVC.05</div>
-        <h3>Custom Procurement</h3>
-        <p>Bespoke configuration runs for institutional buyers needing nonstandard calibers, finishes, or control-system requirements.</p>
-      </div>
-      <div class="service">
-        <div class="idx mono">SVC.06</div>
-        <h3>Training & Certification</h3>
-        <p>Operator certification programs covering handling, maintenance, and smart-system calibration for fielded Kangtao and QianT hardware.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <script>
+        // --- COUNTDOWN TIMER ---
+        // Set your target launch date here (Year, Month [0-11], Day, Hour, Minute)
+        // This sets it to 30 days from now for demonstration
+        const launchDate = new Date();
+        launchDate.setDate(launchDate.getDate() + 30); 
 
-<section id="arsenal">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-tag mono">// 04 — PRODUCT LINE</span>
-      <h2>The Arsenal</h2>
-      <div class="rule"></div>
-    </div>
-    <div class="arsenal-grid">
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
 
-      <div class="gun-card">
-        <div class="gun-top"><span class="gun-class mono">ASSAULT RIFLE</span><span class="gun-id mono">KT-AR7</span></div>
-        <h3>Kangtao Vanguard-7</h3>
-        <p class="gun-desc">Modular assault platform with a smart-linked optic and swappable barrel kits for close-quarters or extended-range loadouts.</p>
-        <div class="gun-stats">
-          <div><span class="label mono">POWER</span><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div></div>
-          <div><span class="label mono">HANDLING</span><div class="bar-track"><div class="bar-fill" style="width:68%"></div></div></div>
-          <div><span class="label mono">RANGE</span><div class="bar-track"><div class="bar-fill" style="width:74%"></div></div></div>
-        </div>
-      </div>
+            if (distance < 0) {
+                document.querySelector(".countdown").innerHTML = "<h3>We are live!</h3>";
+                return;
+            }
 
-      <div class="gun-card">
-        <div class="gun-top"><span class="gun-class mono">SMART SMG</span><span class="gun-id mono">KT-SM4</span></div>
-        <h3>Kangtao Reaper-4</h3>
-        <p class="gun-desc">High rate-of-fire smart SMG with target-tracking rounds, built for suppression in tight urban engagements.</p>
-        <div class="gun-stats">
-          <div><span class="label mono">POWER</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></div>
-          <div><span class="label mono">HANDLING</span><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div></div>
-          <div><span class="label mono">RANGE</span><div class="bar-track"><div class="bar-fill" style="width:42%"></div></div></div>
-        </div>
-      </div>
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      <div class="gun-card">
-        <div class="gun-top"><span class="gun-class mono">SNIPER SYSTEM</span><span class="gun-id mono">KT-SR9</span></div>
-        <h3>Kangtao Longshade-9</h3>
-        <p class="gun-desc">Bolt-action precision rifle with thermal-assisted optics and a recoil-dampening chassis for first-shot reliability at extreme range.</p>
-        <div class="gun-stats">
-          <div><span class="label mono">POWER</span><div class="bar-track"><div class="bar-fill" style="width:96%"></div></div></div>
-          <div><span class="label mono">HANDLING</span><div class="bar-track"><div class="bar-fill" style="width:38%"></div></div></div>
-          <div><span class="label mono">RANGE</span><div class="bar-track"><div class="bar-fill" style="width:99%"></div></div></div>
-        </div>
-      </div>
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }
 
-      <div class="gun-card">
-        <div class="gun-top"><span class="gun-class mono">SHOTGUN</span><span class="gun-id mono">KT-SG2</span></div>
-        <h3>Kangtao Brawler-2</h3>
-        <p class="gun-desc">Pump-action breach-and-clear shotgun built with a reinforced frame for sustained use in close, hostile environments.</p>
-        <div class="gun-stats">
-          <div><span class="label mono">POWER</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div>
-          <div><span class="label mono">HANDLING</span><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div></div>
-          <div><span class="label mono">RANGE</span><div class="bar-track"><div class="bar-fill" style="width:22%"></div></div></div>
-        </div>
-      </div>
+        // Run immediately and then loop every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
 
-      <div class="gun-card">
-        <div class="gun-top"><span class="gun-class mono">SIDEARM</span><span class="gun-id mono">QT-P3</span></div>
-        <h3>QianT Whisper-3</h3>
-        <p class="gun-desc">QianT's flagship concealable pistol — a slim precision-milled frame with a near-silent slide cycle for discreet carry.</p>
-        <div class="gun-stats">
-          <div><span class="label mono">POWER</span><div class="bar-track"><div class="bar-fill" style="width:48%"></div></div></div>
-          <div><span class="label mono">HANDLING</span><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div></div>
-          <div><span class="label mono">RANGE</span><div class="bar-track"><div class="bar-fill" style="width:35%"></div></div></div>
-        </div>
-      </div>
 
-      <div class="gun-card">
-        <div class="gun-top"><span class="gun-class mono">SIDEARM</span><span class="gun-id mono">QT-P6</span></div>
-        <h3>QianT Sable-6</h3>
-        <p class="gun-desc">Heavier-frame QianT pistol with extended magazine capacity, built for operators who need a sidearm that can carry a fight alone.</p>
-        <div class="gun-stats">
-          <div><span class="label mono">POWER</span><div class="bar-track"><div class="bar-fill" style="width:64%"></div></div></div>
-          <div><span class="label mono">HANDLING</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div>
-          <div><span class="label mono">RANGE</span><div class="bar-track"><div class="bar-fill" style="width:46%"></div></div></div>
-        </div>
-      </div>
+        // --- FORM INTERACTION ---
+        function handleSubscribe(event) {
+            event.preventDefault();
+            const email = document.getElementById("emailInput").value;
+            const messageElement = document.getElementById("formMessage");
+            const button = event.target.querySelector("button");
 
-    </div>
-  </div>
-</section>
-
-<section id="locations">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-tag mono">// 05 — FOOTPRINT</span>
-      <h2>Locations</h2>
-      <div class="rule"></div>
-    </div>
-    <div class="loc-grid">
-      <div class="loc-card">
-        <span class="tag mono">HEADQUARTERS</span>
-        <h3>Pacific Rim Tower</h3>
-        <p>Sector 9, New Harbor District</p>
-        <p>Coastal Megacity, Pacific Rim</p>
-        <div class="meta mono">HQ-001 // EXEC + R&D</div>
-      </div>
-      <div class="loc-card">
-        <span class="tag mono">PRODUCTION</span>
-        <h3>Foundry Complex 4</h3>
-        <p>Industrial Belt, Outer Ring Road</p>
-        <p>Continental Manufacturing Zone</p>
-        <div class="meta mono">FAC-004 // SMALL ARMS LINE</div>
-      </div>
-      <div class="loc-card">
-        <span class="tag mono">QIANT DIVISION</span>
-        <h3>Precision Annex 2</h3>
-        <p>Lower Foundry District, Block C</p>
-        <p>Coastal Megacity, Pacific Rim</p>
-        <div class="meta mono">QT-ANX-02 // PISTOL R&D</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="cta">
-  <h2>Contracted Force, Delivered.</h2>
-  <p>Procurement, partnership, and field-support requests are routed through corporate liaison only. Clearance verification required.</p>
-  <a class="btn" href="#about">Request Liaison Contact ›</a>
-</div>
-
-<footer>
-  <div class="f-logo">
-    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20 2L36 11V29L20 38L4 29V11L20 2Z" stroke="#ff003c" stroke-width="1.5"/>
-      <path d="M13 14H17V26H13V14Z" fill="#ff003c"/>
-      <path d="M17 19.5L25 14V26L17 19.5Z" fill="#ff003c"/>
-    </svg>
-    <span>KANGTAO ARMS</span>
-  </div>
-  <p class="f-legal">FICTIONAL BRAND — ORIGINAL DESIGN. This is a concept site built for a cyberpunk-themed creative project. All names, logos, and specs are original creative work, not affiliated with or depicting any real manufacturer.</p>
-</footer>
-
+            // Simple front-end validation check
+            if (email) {
+                button.disabled = true;
+                button.innerText = "Saving...";
+                
+                // Simulating an API save request
+                setTimeout(() => {
+                    messageElement.textContent = "Awesome! We've added you to the launch list. 🚀";
+                    messageElement.className = "message success";
+                    document.getElementById("emailInput").value = "";
+                    button.disabled = false;
+                    button.innerText = "Notify Me";
+                }, 1200);
+            } else {
+                messageElement.textContent = "Please enter a valid email address.";
+                messageElement.className = "message error";
+            }
+        }
+    </script>
 </body>
 </html>
