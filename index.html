@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KANGTAO | System Offline</title>
+    <title>康陶kangtao</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Plus+Jakarta+Sans:wght@700&family=Noto+Sans+SC:wght@900&display=swap" rel="stylesheet">
@@ -59,7 +59,7 @@
             border-radius: 24px 24px 0 0;
             text-align: center;
             width: 100%;
-            max-width: 720px; /* Wider footprint for desktop alignment */
+            max-width: 720px;
             position: relative;
             z-index: 1;
             backdrop-filter: blur(20px);
@@ -70,7 +70,7 @@
             justify-content: center;
         }
 
-        /* Branding Block with balanced spacing */
+        /* Branding Block */
         .brand-header-block {
             display: flex;
             flex-direction: column;
@@ -79,7 +79,6 @@
             margin-bottom: 4rem;
         }
 
-        /* Integrated Row matching authentic logo scaling proportions */
         .brand-horizontal-row {
             display: flex;
             align-items: flex-end;
@@ -92,7 +91,7 @@
         /* Large Chinese Characters */
         .zh-text {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 4.5rem; /* Upgraded baseline desktop size */
+            font-size: 4.5rem;
             font-weight: 900;
             letter-spacing: -3px;
         }
@@ -100,7 +99,7 @@
         /* Scaled Down English Component */
         .en-text {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3.2rem; /* Proportionally smaller than Chinese to match branding */
+            font-size: 3.2rem;
             font-weight: 900;
             letter-spacing: -2px;
             margin-left: 10px;
@@ -117,7 +116,7 @@
             text-shadow: 0 0 30px rgba(255, 85, 0, 0.45); 
         }
 
-        /* Subtitle layout perfectly fitting the centralized block width */
+        /* Subtitle layout with flanked orange accent lines */
         .slogan-container {
             display: flex;
             align-items: center;
@@ -143,7 +142,7 @@
             white-space: nowrap;
         }
 
-        /* Balanced status block spacing to remove vast negative gaps */
+        /* Balanced status block spacing */
         .status-block {
             margin-bottom: 6rem;
             display: flex;
@@ -152,16 +151,54 @@
             gap: 1.2rem;
         }
 
-        .badge-offline {
+        /* --- RGB CHROMATIC COMING SOON BADGE --- */
+        .badge-coming-soon {
             display: inline-block;
-            border: 1px solid #2d2d32;
-            background: rgba(255, 255, 255, 0.01);
+            background: rgba(15, 15, 17, 0.6);
             padding: 0.5rem 2rem;
             font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: #787880;
+            position: relative;
+            border-radius: 4px;
+            color: #ffffff;
+            z-index: 1;
+            /* Multi-layered box shadow to create a high-tech RGB border glow */
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                -2px 0 8px rgba(255, 0, 0, 0.6),    /* Red element */
+                 0px 0 8px rgba(0, 255, 0, 0.4),    /* Green element */
+                 2px 0 8px rgba(0, 102, 255, 0.6);  /* Blue element */
+            animation: rgbShift 4s infinite linear;
+        }
+
+        /* Subtle cyclic rotation around the RGB spectrum for the cyberware vibe */
+        @keyframes rgbShift {
+            0% {
+                box-shadow: 
+                    0 0 0 1px rgba(255, 255, 255, 0.05),
+                    -2px -2px 10px rgba(255, 0, 0, 0.6),
+                    2px 2px 10px rgba(0, 102, 255, 0.6);
+            }
+            33% {
+                box-shadow: 
+                    0 0 0 1px rgba(255, 255, 255, 0.05),
+                    2px -2px 10px rgba(0, 255, 0, 0.6),
+                    -2px 2px 10px rgba(255, 0, 0, 0.6);
+            }
+            66% {
+                box-shadow: 
+                    0 0 0 1px rgba(255, 255, 255, 0.05),
+                    -2px 2px 10px rgba(0, 102, 255, 0.6),
+                    2px -2px 10px rgba(0, 255, 0, 0.6);
+            }
+            100% {
+                box-shadow: 
+                    0 0 0 1px rgba(255, 255, 255, 0.05),
+                    -2px -2px 10px rgba(255, 0, 0, 0.6),
+                    2px 2px 10px rgba(0, 102, 255, 0.6);
+            }
         }
 
         .timeline-text {
@@ -172,7 +209,7 @@
             letter-spacing: 2px;
         }
 
-        /* Clean fading bottom boundary */
+        /* Absolute Bottom Tagline */
         .tagline {
             font-family: 'Orbitron', sans-serif;
             font-size: 0.85rem;
@@ -185,20 +222,15 @@
             width: 100%;
         }
 
-        /* --- RESPONSIVE MEDIA QUERIES FOR MOBILE --- */
+        /* Responsive Mobile Breaks */
         @media (max-width: 600px) {
             .container {
                 padding: 4rem 1.5rem 3rem 1.5rem;
-                margin-top: auto;
-                margin-bottom: 0;
                 border-radius: 20px 20px 0 0;
             }
 
-            .brand-header-block {
-                margin-bottom: 3rem;
-            }
+            .brand-header-block { margin-bottom: 3rem; }
 
-            /* Scales typography cleanly so it never breaks layout rows on mobile */
             .zh-text {
                 font-size: 2.8rem;
                 letter-spacing: -1.5px;
@@ -217,22 +249,15 @@
                 text-indent: 4px;
             }
 
-            .slogan-container {
-                gap: 10px;
-            }
+            .slogan-container { gap: 10px; }
+            .status-block { margin-bottom: 4rem; }
 
-            .status-block {
-                margin-bottom: 4rem;
-            }
-
-            .badge-offline {
+            .badge-coming-soon {
                 padding: 0.4rem 1.5rem;
                 font-size: 0.75rem;
             }
 
-            .timeline-text {
-                font-size: 0.85rem;
-            }
+            .timeline-text { font-size: 0.85rem; }
 
             .tagline {
                 font-size: 0.7rem;
@@ -246,7 +271,7 @@
 
     <div class="container">
         
-        <!-- Scaled Brand Header Block -->
+        <!-- Brand Header Block -->
         <div class="brand-header-block">
             <div class="brand-horizontal-row">
                 <span class="zh-text accent-white">康</span>
@@ -262,9 +287,9 @@
             </div>
         </div>
 
-        <!-- Compressed Status Section -->
+        <!-- Status Block with RGB Coming Soon Badge -->
         <div class="status-block">
-            <div class="badge-offline">System Offline</div>
+            <div class="badge-coming-soon">Coming Soon</div>
             <div class="timeline-text">FULL WEBSITE DEPLOYMENT // Q3 2026</div>
         </div>
 
