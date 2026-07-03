@@ -6,14 +6,13 @@
     <title>KANGTAO | System Offline</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Plus+Jakarta+Sans:wght@700&family=Noto+Sans+SC:wght@900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #060606;
             --surface-color: #0f0f11;
             --orange-primary: #ff5500;
             --text-main: #ffffff;
-            --text-muted: #707075;
             --border-color: #222226;
         }
 
@@ -31,165 +30,245 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
+            padding: 2rem 1rem;
         }
 
-        /* Ambient background grid & glow */
+        /* Ambient background grid */
         body::before {
             content: '';
             position: absolute;
             inset: 0;
             background-image: 
-                linear-gradient(rgba(255, 85, 0, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 85, 0, 0.02) 1px, transparent 1px);
+                linear-gradient(rgba(255, 85, 0, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 85, 0, 0.015) 1px, transparent 1px);
             background-size: 40px 40px;
             background-position: center;
             z-index: 0;
         }
 
-        body::after {
-            content: '';
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: var(--orange-primary);
-            filter: blur(180px);
-            opacity: 0.08;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 0;
-        }
-
-        /* Main Container with bottom fading shadow */
+        /* Responsive Container */
         .container {
-            background: linear-gradient(180deg, var(--surface-color) 0%, rgba(15, 15, 17, 0.85) 80%, rgba(6, 6, 6, 0) 100%);
+            background: linear-gradient(180deg, #111113 0%, rgba(17, 17, 19, 0.95) 85%, rgba(6, 6, 6, 0) 100%);
             border-top: 1px solid var(--border-color);
             border-left: 1px solid var(--border-color);
             border-right: 1px solid var(--border-color);
             border-bottom: 1px solid transparent;
-            padding: 4.5rem 3rem 5rem 3rem;
-            border-radius: 20px 20px 0 0;
+            padding: 5rem 2rem 4rem 2rem;
+            border-radius: 24px 24px 0 0;
             text-align: center;
-            max-width: 600px;
-            width: 92%;
+            width: 100%;
+            max-width: 720px; /* Wider footprint for desktop alignment */
             position: relative;
             z-index: 1;
-            backdrop-filter: blur(12px);
-        }
-
-        /* Branding Header Group */
-        .brand-header-group {
-            margin-bottom: 2.5rem;
-        }
-
-        .brand-container {
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 1rem;
-            margin-bottom: 0.6rem;
         }
 
-        /* Logo Styling */
-        .logo-zh, .logo-en {
-            font-family: 'Orbitron', 'Noto Sans SC', sans-serif;
-            font-size: 2.6rem;
-            font-weight: 900;
-            letter-spacing: 1px;
+        /* Branding Block with balanced spacing */
+        .brand-header-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 4rem;
         }
 
-        .logo-zh {
-            font-weight: 700;
-            letter-spacing: 4px;
+        /* Integrated Row matching authentic logo scaling proportions */
+        .brand-horizontal-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            flex-wrap: nowrap;
         }
 
-        .white-text {
-            color: var(--text-main);
-        }
-
-        .orange-text {
-            color: var(--orange-primary);
-            text-shadow: 0 0 20px rgba(255, 85, 0, 0.25);
-        }
-
-        /* Slogan underneath logo */
-        .slogan {
+        /* Large Chinese Characters */
+        .zh-text {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.5);
-            letter-spacing: 6px;
-            text-indent: 6px; /* Offsets letter-spacing tracking to center properly */
-            text-transform: uppercase;
+            font-size: 4.5rem; /* Upgraded baseline desktop size */
+            font-weight: 900;
+            letter-spacing: -3px;
         }
 
-        /* Timeline Badge */
-        .status-badge {
-            display: inline-block;
-            background: rgba(255, 85, 0, 0.07);
-            border: 1px solid rgba(255, 85, 0, 0.25);
-            color: var(--orange-primary);
-            padding: 0.4rem 1.2rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
+        /* Scaled Down English Component */
+        .en-text {
             font-family: 'Orbitron', sans-serif;
-            margin-bottom: 2rem;
-            letter-spacing: 2px;
+            font-size: 3.2rem; /* Proportionally smaller than Chinese to match branding */
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-left: 10px;
+            padding-bottom: 4px;
+        }
+
+        /* Split accents */
+        .accent-white { 
+            color: #ffffff; 
+        }
+
+        .accent-orange { 
+            color: var(--orange-primary); 
+            text-shadow: 0 0 30px rgba(255, 85, 0, 0.45); 
+        }
+
+        /* Subtitle layout perfectly fitting the centralized block width */
+        .slogan-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 550px;
+            gap: 16px;
+        }
+
+        .orange-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: var(--orange-primary);
+            box-shadow: 0 0 8px rgba(255, 85, 0, 0.4);
+        }
+
+        .slogan-sub {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--orange-primary);
+            letter-spacing: 6px;
+            text-indent: 6px;
+            white-space: nowrap;
+        }
+
+        /* Balanced status block spacing to remove vast negative gaps */
+        .status-block {
+            margin-bottom: 6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .badge-offline {
+            display: inline-block;
+            border: 1px solid #2d2d32;
+            background: rgba(255, 255, 255, 0.01);
+            padding: 0.5rem 2rem;
+            font-size: 0.85rem;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #787880;
         }
 
-        h2 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            color: #ececee;
+        .timeline-text {
+            color: var(--orange-primary);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
         }
 
-        p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            max-width: 440px;
-            margin: 0 auto 4.5rem auto;
-        }
-
-        /* Bottom Tagline Styling */
+        /* Clean fading bottom boundary */
         .tagline {
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.25);
-            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.2);
+            letter-spacing: 4px;
             text-transform: uppercase;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
-            padding-top: 1.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            padding-top: 2rem;
+            width: 100%;
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES FOR MOBILE --- */
+        @media (max-width: 600px) {
+            .container {
+                padding: 4rem 1.5rem 3rem 1.5rem;
+                margin-top: auto;
+                margin-bottom: 0;
+                border-radius: 20px 20px 0 0;
+            }
+
+            .brand-header-block {
+                margin-bottom: 3rem;
+            }
+
+            /* Scales typography cleanly so it never breaks layout rows on mobile */
+            .zh-text {
+                font-size: 2.8rem;
+                letter-spacing: -1.5px;
+            }
+
+            .en-text {
+                font-size: 2rem;
+                letter-spacing: -1px;
+                margin-left: 5px;
+                padding-bottom: 2px;
+            }
+
+            .slogan-sub {
+                font-size: 0.75rem;
+                letter-spacing: 4px;
+                text-indent: 4px;
+            }
+
+            .slogan-container {
+                gap: 10px;
+            }
+
+            .status-block {
+                margin-bottom: 4rem;
+            }
+
+            .badge-offline {
+                padding: 0.4rem 1.5rem;
+                font-size: 0.75rem;
+            }
+
+            .timeline-text {
+                font-size: 0.85rem;
+            }
+
+            .tagline {
+                font-size: 0.7rem;
+                letter-spacing: 2.5px;
+                padding-top: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Brand Identity Group -->
-        <div class="brand-header-group">
-            <div class="brand-container">
-                <div class="logo-zh"><span class="white-text">康</span><span class="orange-text">陶</span></div>
-                <div class="logo-en"><span class="white-text">KANG</span><span class="orange-text">TAO</span></div>
+        
+        <!-- Scaled Brand Header Block -->
+        <div class="brand-header-block">
+            <div class="brand-horizontal-row">
+                <span class="zh-text accent-white">康</span>
+                <span class="zh-text accent-orange">陶</span>
+                <span class="en-text accent-white">KANG</span>
+                <span class="en-text accent-orange">TAO</span>
             </div>
-            <!-- Subtitle directly below logo -->
-            <div class="slogan">智能电子解决方案</div>
+            
+            <div class="slogan-container">
+                <div class="orange-line"></div>
+                <div class="slogan-sub">智能电子解决方案</div>
+                <div class="orange-line"></div>
+            </div>
         </div>
 
-        <!-- Launch Timeline -->
-        <div class="status-badge">Deployment // Q3 2026</div>
+        <!-- Compressed Status Section -->
+        <div class="status-block">
+            <div class="badge-offline">System Offline</div>
+            <div class="timeline-text">FULL WEBSITE DEPLOYMENT // Q3 2026</div>
+        </div>
 
-        <h2>Next-Generation Infrastructure Loading</h2>
-        <p>Our corporate web architecture is undergoing scheduled deployment upgrades. Full network systems will initialize shortly.</p>
-
-        <!-- Bottom Tagline -->
+        <!-- Grounded Bottom Tagline -->
         <div class="tagline">this is kangtao. This is intelligence.</div>
     </div>
 
