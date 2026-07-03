@@ -6,13 +6,16 @@
     <title>康陶kangtao</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Plus+Jakarta+Sans:wght@700&family=Noto+Sans+SC:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Plus+Jakarta+Sans:wght@500;700&family=Noto+Sans+SC:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #060606;
-            --surface-color: #0f0f11;
+            --surface-card: #0f0f12;
+            --surface-hover: #15151a;
             --orange-primary: #ff5500;
+            --orange-glow: rgba(255, 85, 0, 0.4);
             --text-main: #ffffff;
+            --text-muted: #888890;
             --border-color: #222226;
         }
 
@@ -27,50 +30,169 @@
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 85, 0, 0.012) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 85, 0, 0.012) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            width: 100%;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(6, 6, 6, 0.85);
+            backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: flex-end;
+            text-decoration: none;
+            line-height: 0.95;
+            cursor: pointer;
+        }
+
+        .nav-logo .zh { font-family: 'Noto Sans SC'; font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; }
+        .nav-logo .en { font-family: 'Orbitron'; font-size: 1.3rem; font-weight: 900; margin-left: 4px; padding-bottom: 1px; letter-spacing: -1px; }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+            font-family: 'Orbitron', 'Noto Sans SC', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+        }
+
+        .nav-links button {
+            background: none;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-transform: uppercase;
+            font-family: inherit;
+            font-size: inherit;
+            letter-spacing: inherit;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .nav-links button:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .nav-links button.active {
+            color: var(--orange-primary);
+            border-color: rgba(255, 85, 0, 0.2);
+            background: rgba(255, 85, 0, 0.03);
+        }
+
+        /* --- LANGUAGE TOGGLE --- */
+        .lang-switch {
+            font-family: 'Orbitron', 'Noto Sans SC', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 700;
+            transition: color 0.3s;
+            padding: 0.2rem 0.4rem;
+        }
+
+        .lang-btn.active {
+            color: var(--orange-primary);
+            text-shadow: 0 0 10px var(--orange-glow);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: #ffffff;
+        }
+
+        .accent-white { color: #ffffff; }
+        .accent-orange { color: var(--orange-primary); text-shadow: 0 0 15px var(--orange-glow); }
+
+        /* --- LAYOUT WRAPPER --- */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- TAB LAYER TRANSITIONS --- */
+        .tab-panel {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tab-panel.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HERO PORTAL PANEL --- */
+        .hero-section {
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
-            position: relative;
-            padding: 2rem 1rem;
+            min-height: 55vh;
+            width: 100%;
         }
 
-        /* Ambient background grid */
-        body::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(255, 85, 0, 0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 85, 0, 0.015) 1px, transparent 1px);
-            background-size: 40px 40px;
-            background-position: center;
-            z-index: 0;
-        }
-
-        /* Responsive Container */
         .container {
             background: linear-gradient(180deg, #111113 0%, rgba(17, 17, 19, 0.95) 85%, rgba(6, 6, 6, 0) 100%);
-            border-top: 1px solid var(--border-color);
-            border-left: 1px solid var(--border-color);
-            border-right: 1px solid var(--border-color);
+            border: 1px solid var(--border-color);
             border-bottom: 1px solid transparent;
-            padding: 5rem 2rem 4rem 2rem;
+            padding: 6rem 2rem 5rem 2rem;
             border-radius: 24px 24px 0 0;
             text-align: center;
             width: 100%;
-            max-width: 720px;
-            position: relative;
-            z-index: 1;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            max-width: 760px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.7);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
         }
 
-        /* Branding Block */
         .brand-header-block {
             display: flex;
             flex-direction: column;
@@ -82,220 +204,458 @@
         .brand-horizontal-row {
             display: flex;
             align-items: flex-end;
-            justify-content: center;
             line-height: 0.95;
             margin-bottom: 1.5rem;
-            flex-wrap: nowrap;
         }
 
-        /* Large Chinese Characters */
-        .zh-text {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 4.5rem;
-            font-weight: 900;
-            letter-spacing: -3px;
-        }
+        .zh-text { font-family: 'Noto Sans SC'; font-size: 4.5rem; font-weight: 900; letter-spacing: -3px; }
+        .en-text { font-family: 'Orbitron'; font-size: 3.2rem; font-weight: 900; letter-spacing: -2px; margin-left: 10px; padding-bottom: 4px; }
 
-        /* Scaled Down English Component */
-        .en-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.2rem;
-            font-weight: 900;
-            letter-spacing: -2px;
-            margin-left: 10px;
-            padding-bottom: 4px;
-        }
+        .slogan-container { display: flex; align-items: center; width: 100%; max-width: 540px; gap: 16px; }
+        .orange-line { flex-grow: 1; height: 1px; background-color: var(--orange-primary); box-shadow: 0 0 6px var(--orange-glow); }
+        .slogan-sub { font-family: 'Noto Sans SC'; font-size: 0.95rem; font-weight: 700; color: var(--orange-primary); letter-spacing: 6px; text-indent: 6px; white-space: nowrap; }
 
-        /* Split accents */
-        .accent-white { 
-            color: #ffffff; 
-        }
-
-        .accent-orange { 
-            color: var(--orange-primary); 
-            text-shadow: 0 0 30px rgba(255, 85, 0, 0.45); 
-        }
-
-        /* Subtitle layout with flanked orange accent lines */
-        .slogan-container {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            max-width: 550px;
-            gap: 16px;
-        }
-
-        .orange-line {
-            flex-grow: 1;
-            height: 1px;
-            background-color: var(--orange-primary);
-            box-shadow: 0 0 8px rgba(255, 85, 0, 0.4);
-        }
-
-        .slogan-sub {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--orange-primary);
-            letter-spacing: 6px;
-            text-indent: 6px;
-            white-space: nowrap;
-        }
-
-        /* Balanced status block spacing */
         .status-block {
-            margin-bottom: 6rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 1.2rem;
         }
 
-        /* --- RGB CHROMATIC COMING SOON BADGE --- */
-        .badge-coming-soon {
+        .badge-deployment {
             display: inline-block;
-            background: rgba(15, 15, 17, 0.6);
-            padding: 0.5rem 2rem;
+            background: rgba(15, 15, 17, 0.8);
+            padding: 0.6rem 2.2rem;
             font-size: 0.85rem;
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 3px;
-            position: relative;
             border-radius: 4px;
             color: #ffffff;
-            z-index: 1;
-            /* Multi-layered box shadow to create a high-tech RGB border glow */
-            box-shadow: 
-                0 0 0 1px rgba(255, 255, 255, 0.05),
-                -2px 0 8px rgba(255, 0, 0, 0.6),    /* Red element */
-                 0px 0 8px rgba(0, 255, 0, 0.4),    /* Green element */
-                 2px 0 8px rgba(0, 102, 255, 0.6);  /* Blue element */
+            box-shadow: -2px 0 8px rgba(255, 0, 0, 0.5), 0px 0 8px rgba(0, 255, 0, 0.3), 2px 0 8px rgba(0, 102, 255, 0.5);
             animation: rgbShift 4s infinite linear;
         }
 
-        /* Subtle cyclic rotation around the RGB spectrum for the cyberware vibe */
         @keyframes rgbShift {
-            0% {
-                box-shadow: 
-                    0 0 0 1px rgba(255, 255, 255, 0.05),
-                    -2px -2px 10px rgba(255, 0, 0, 0.6),
-                    2px 2px 10px rgba(0, 102, 255, 0.6);
-            }
-            33% {
-                box-shadow: 
-                    0 0 0 1px rgba(255, 255, 255, 0.05),
-                    2px -2px 10px rgba(0, 255, 0, 0.6),
-                    -2px 2px 10px rgba(255, 0, 0, 0.6);
-            }
-            66% {
-                box-shadow: 
-                    0 0 0 1px rgba(255, 255, 255, 0.05),
-                    -2px 2px 10px rgba(0, 102, 255, 0.6),
-                    2px -2px 10px rgba(0, 255, 0, 0.6);
-            }
-            100% {
-                box-shadow: 
-                    0 0 0 1px rgba(255, 255, 255, 0.05),
-                    -2px -2px 10px rgba(255, 0, 0, 0.6),
-                    2px 2px 10px rgba(0, 102, 255, 0.6);
-            }
+            0%, 100% { box-shadow: -2px -2px 10px rgba(255,0,0,0.5), 2px 2px 10px rgba(0,102,255,0.5); }
+            33% { box-shadow: 2px -2px 10px rgba(0,255,0,0.5), -2px 2px 10px rgba(255,0,0,0.5); }
+            66% { box-shadow: -2px 2px 10px rgba(0,102,255,0.5), 2px -2px 10px rgba(0,255,0,0.5); }
         }
 
-        .timeline-text {
-            color: var(--orange-primary);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
+        .timeline-text { color: var(--orange-primary); font-family: 'Orbitron', 'Noto Sans SC', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 2px; }
 
-        /* Absolute Bottom Tagline */
-        .tagline {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.2);
+        /* --- MODERN GRID MODULE MATRIX --- */
+        .section-title {
+            font-family: 'Orbitron', 'Noto Sans SC', sans-serif;
+            font-size: 1.3rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            padding-top: 2rem;
-            width: 100%;
+            margin-bottom: 3rem;
+            border-left: 4px solid var(--orange-primary);
+            padding-left: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-title span { color: var(--text-muted); font-size: 0.8rem; font-family: 'Share Tech Mono'; letter-spacing: 1px; }
+
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
         }
 
-        /* Responsive Mobile Breaks */
-        @media (max-width: 600px) {
-            .container {
-                padding: 4rem 1.5rem 3rem 1.5rem;
-                border-radius: 20px 20px 0 0;
-            }
+        .tech-card {
+            background-color: var(--surface-card);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 280px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-            .brand-header-block { margin-bottom: 3rem; }
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--orange-primary), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
 
-            .zh-text {
-                font-size: 2.8rem;
-                letter-spacing: -1.5px;
-            }
+        .tech-card:hover {
+            background-color: var(--surface-hover);
+            border-color: rgba(255, 85, 0, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
 
-            .en-text {
-                font-size: 2rem;
-                letter-spacing: -1px;
-                margin-left: 5px;
-                padding-bottom: 2px;
-            }
+        .tech-card:hover::before { transform: translateX(100%); }
 
-            .slogan-sub {
-                font-size: 0.75rem;
-                letter-spacing: 4px;
-                text-indent: 4px;
-            }
+        .card-meta { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.5rem; }
+        .card-id { font-family: 'Share Tech Mono'; color: var(--orange-primary); font-size: 0.8rem; letter-spacing: 1px; }
+        .card-title { font-family: 'Orbitron', 'Noto Sans SC', sans-serif; font-size: 1.3rem; font-weight: 800; color: #ffffff; }
+        .card-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; font-weight: 500; }
 
+        /* --- GEOMETRIC FOOTER FRAMEWORK --- */
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            padding-top: 2.5rem;
+            margin-top: 6rem;
+        }
+
+        .tagline { 
+            font-family: 'Orbitron', 'Noto Sans SC', sans-serif; 
+            font-size: 0.85rem; 
+            font-weight: 700; 
+            color: rgba(255, 255, 255, 0.2); 
+            letter-spacing: 4px; 
+            text-transform: uppercase; 
+            text-align: left; 
+        }
+
+        /* --- MULTILANG DISPLAYS --- */
+        [data-lang="zh"] {
+            display: none;
+        }
+
+        /* --- RESPONSIVE SCALING ADJUSTMENTS --- */
+        @media (max-width: 1024px) {
+            .system-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 1.2rem 1rem; flex-direction: column; gap: 1.2rem; }
+            .nav-left { flex-direction: column; gap: 1rem; width: 100%; }
+            .nav-links { gap: 0.2rem; flex-wrap: wrap; justify-content: center; width: 100%; }
+            .nav-links button { padding: 0.5rem 0.6rem; font-size: 0.7rem; }
+            .system-grid { grid-template-columns: 1fr; gap: 1rem; }
+            
+            main { padding: 2rem 1rem; }
+            .container { padding: 4rem 1.5rem 3rem 1.5rem; }
+            .zh-text { font-size: 3rem; letter-spacing: -1.5px; }
+            .en-text { font-size: 2.2rem; letter-spacing: -1px; margin-left: 6px; padding-bottom: 2px; }
+            .slogan-sub { font-size: 0.8rem; letter-spacing: 4px; }
             .slogan-container { gap: 10px; }
-            .status-block { margin-bottom: 4rem; }
+            
+            .tech-card { min-height: auto; padding: 2rem 1.5rem; }
+            .section-title { font-size: 1.1rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
 
-            .badge-coming-soon {
-                padding: 0.4rem 1.5rem;
-                font-size: 0.75rem;
-            }
-
-            .timeline-text { font-size: 0.85rem; }
-
-            .tagline {
-                font-size: 0.7rem;
-                letter-spacing: 2.5px;
-                padding-top: 1.5rem;
-            }
+            .footer-row { padding-top: 2rem; margin-top: 4rem; justify-content: center; }
+            .tagline { font-size: 0.65rem; letter-spacing: 2.5px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <!-- Integrated Structural Navigation Header -->
+    <nav>
+        <div class="nav-left">
+            <div class="nav-logo" onclick="switchTab('overview')">
+                <span class="zh accent-white">康</span>
+                <span class="zh accent-orange">陶</span>
+                <span class="en accent-white">KANG</span>
+                <span class="en accent-orange">TAO</span>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <button id="btn-overview" class="active" onclick="switchTab('overview')">
+                        <span data-lang="en">Overview</span>
+                        <span data-lang="zh">概述</span>
+                    </button>
+                </li>
+                <li>
+                    <button id="btn-products" onclick="switchTab('products')">
+                        <span data-lang="en">Products</span>
+                        <span data-lang="zh">智能武器</span>
+                    </button>
+                </li>
+                <li>
+                    <button id="btn-defense" onclick="switchTab('defense')">
+                        <span data-lang="en">Defense</span>
+                        <span data-lang="zh">防御架构</span>
+                    </button>
+                </li>
+                <li>
+                    <button id="btn-network" onclick="switchTab('network')">
+                        <span data-lang="en">Network</span>
+                        <span data-lang="zh">量子网络</span>
+                    </button>
+                </li>
+                <li>
+                    <button id="btn-qiant" onclick="switchTab('qiant')">
+                        <span data-lang="en">QianT</span>
+                        <span data-lang="zh">千太义体</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="lang-switch">
+            <button id="lang-en" class="lang-btn active" onclick="setLanguage('en')">ENG</button>
+            <span>|</span>
+            <button id="lang-zh" class="lang-btn" onclick="setLanguage('zh')">中文</button>
+        </div>
+    </nav>
+
+    <main>
         
-        <!-- Brand Header Block -->
-        <div class="brand-header-block">
-            <div class="brand-horizontal-row">
-                <span class="zh-text accent-white">康</span>
-                <span class="zh-text accent-orange">陶</span>
-                <span class="en-text accent-white">KANG</span>
-                <span class="en-text accent-orange">TAO</span>
+        <!-- MODULE PORTAL 01: CORPORATE OVERVIEW -->
+        <div id="tab-overview" class="tab-panel active">
+            <section class="hero-section">
+                <div class="container">
+                    <div class="brand-header-block">
+                        <div class="brand-horizontal-row">
+                            <span class="zh-text accent-white">康</span>
+                            <span class="zh-text accent-orange">陶</span>
+                            <span class="en-text accent-white">KANG</span>
+                            <span class="en-text accent-orange">TAO</span>
+                        </div>
+                        <div class="slogan-container">
+                            <div class="orange-line"></div>
+                            <div class="slogan-sub">智能电子解决方案</div>
+                            <div class="orange-line"></div>
+                        </div>
+                    </div>
+                    <div class="status-block">
+                        <div class="badge-deployment">
+                            <span data-lang="en">Early Deployment</span>
+                            <span data-lang="zh">初步部署阶段</span>
+                        </div>
+                        <div class="timeline-text">
+                            <span data-lang="en">FULL WEBSITE DEPLOYMENT COMING SOON // Q3 2026</span>
+                            <span data-lang="zh">全功能网站即将上线 // 2026年第三季度</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- MODULE PORTAL 02: PRODUCTS (SMART FIREARMS) -->
+        <div id="tab-products" class="tab-panel">
+            <h2 class="section-title">
+                <span data-lang="en">Smart Weapon Armaments <span>KT-ARMORY // FIREARMS_DIVISION</span></span>
+                <span data-lang="zh">智能武器军备 <span>KT-兵工厂 // 火器事业部</span></span>
+            </h2>
+            <div class="system-grid">
+                <div class="tech-card">
+                    <div class="card-meta">
+                        <span class="card-id">KT-A22 // SMART PISTOL</span>
+                        <h3 class="card-title">A-22B Chao / 鼌</h3>
+                    </div>
+                    <p class="card-desc">
+                        <span data-lang="en">The corporate standard smart handgun. Fires micro-missiles utilizing a multi-barrel configuration to instantly lock and track multiple evasive threats simultaneously.</span>
+                        <span data-lang="zh">企业标准智能手枪。采用多管配置发射微型导弹，能瞬间锁定并同时追踪多个进行规避的目标。</span>
+                    </p>
+                </div>
+                <div class="tech-card">
+                    <div class="card-meta">
+                        <span class="card-id">KT-G58 // SMART SUBMACHINE GUN</span>
+                        <h3 class="card-title">G-58 Dian / 典</h3>
+                    </div>
+                    <p class="card-desc">
+                        <span data-lang="en">An ultra-high fire rate defense asset. Operates a smart macro-targeting matrix that delivers surgical accuracy over close-quarters skirmishes without manual correction.</span>
+                        <span data-lang="zh">拥有极高射速的防卫利器。内置智能宏观瞄准矩阵，在近距离遭遇战中无需手动修正即可提供外科手术般的精准打击。</span>
+                    </p>
+                </div>
+                <div class="tech-card">
+                    <div class="card-meta">
+                        <span class="card-id">KT-L69 // SMART SHOTGUN</span>
+                        <h3 class="card-title">L-69 Zhuo / 卓</h3>
+                    </div>
+                    <p class="card-desc">
+                        <span data-lang="en">A heavy-ordnance tactical variant. Fires micro-guided pellet cluster bursts that pattern precisely over a targeted neural grid array for maximum termination efficiency.</span>
+                        <span data-lang="zh">重型战术改型智能散弹枪。发射微型制导散弹弹丸束，能够精确覆盖目标神经网阵列，实现最大的歼灭效率。</span>
+                    </p>
+                </div>
             </div>
+        </div>
+
+        <!-- MODULE PORTAL 03: DEFENSE APPARATUS -->
+        <div id="tab-defense" class="tab-panel">
+            <h2 class="section-title">
+                <span data-lang="en">Corporate Defense Infrastructures <span>KT-DEF // SECURE_SHIELD</span></span>
+                <span data-lang="zh">企业防御安全架构 <span>KT-安全防御 // 防护矩阵</span></span>
+            </h2>
+            <div class="system-grid">
+                <div class="tech-card">
+                    <div class="card-meta">
+                        <span class="card-id">KT-DF01 // NEURAL BARRIER</span>
+                        <h3 class="card-title">
+                            <span data-lang="en">Aegis Grid Overhaul</span>
+                            <span data-lang="zh">宙斯盾网格系统</span>
+                        </h3>
+                    </div>
+                    <p class="card-desc">
+                        <span data-lang="en">Hardware-based sub-dermal shield buffers that counter external tracking and jam rogue electronic interception vectors completely.</span>
+                        <span data-lang="zh">基于硬件的皮下防御缓冲器，全面对抗外部追踪并彻底干扰恶意电子拦截矢量。</span>
+                    </p>
+                </div>
+                <div class="tech-card">
+                    <div class="card-meta">
+                        <span class="card-id">KT-DF02 // HARDWARE MASKING</span>
+                        <h3 class="card-title">
+                            <span data-lang="en">ICE-Wall Fortification</span>
+                            <span data-lang="zh">ICE防火墙加固</span>
+                        </h3>
+                    </div>
+                    <p class="card-desc">
+                        <span data-lang="en">Military-grade cryptographic firmware protections guarding corporate cybernetic links against invasive neural architecture breaches.</span>
+                        <span data-lang="zh">军工级加密固件保护层，悍卫企业内部网络连接不受侵入式神经架构漏洞的威胁。</span>
+                    </p>
+                </div>
+                <div class="tech-card">
+                    <div class="card-meta">
+                        <span class="card-id">KT-DF03 // PERSONNEL EXTRACTION</span>
+                        <h3 class="card-title">
+                            <span data-lang="en">Autonomous Extraction Drone</span>
+                            <span data-lang="zh">自主式撤离无人机</span>
+                        </h3>
+                    </div>
+                    <p class="card-desc">
+                        <span data-lang="en">Automated airborne assets linked directly into VIP vitals tracking matrices, ready to deploy immediate suppressive covering layouts during perimeter stress events.</span>
+                        <span data-lang="zh">自动化空中资产，直接接入VIP生命指征追踪矩阵。在周边遭遇突发威胁时，随时部署瞬时压制性火力掩护。</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE PORTAL 04: GLOBAL NETWORK ARRAYS -->
+        <div id="tab-network" class="tab-panel">
+            <h2 class="section-title">
+                <span data-lang="en">Global Quantum Network Array <span>KT-NET // DATA_MATRIX</span></span>
+                <span data-lang="zh">全球量子网络阵列 <span>KT-网络 // 数据矩阵</span></span>
+            </h2>
+            <div class="system-grid">
+                <div class="tech-card">
+                    <div class="card-meta">
+                        <span class="card-id">KT-NW01 // SECURE RELAY</span>
+                        <h3 class="card-title">
+                            <span data-lang="en">Quantum Encryption Nodes</span>
+                            <span data-lang="zh">量子加密节点</span>
+                        </h3>
+                    </div>
+                    <p class="card-desc">
+                        <span data-lang="en">Decentralized hyper-frequency transceiver relays preventing any data capture or packet decoding across interstellar deep-space frequencies.</span>
+                        <span data-lang="zh">去中心化的超高频收发中继，防止跨区域深空频段的一切数据拦截或数据包解码。</span>
+                    </p>
+                </div>
+                <div class="tech-card">
+                    <div class="card-meta">
+                        <span class="card-id">KT-NW02 // LINK MONITOR</span>
+                        <h3 class="card-title">
+                            <span data-lang="en">Sub-Orbital Data Uplink</span>
+                            <span data-lang="zh">次轨道数据上行链路</span>
+                        </h3>
+                    </div>
+                    <p class="card-desc">
+                        <span data-lang="en">Constellation satellite systems that route strategic assets across redundant processing facilities for uninterrupted operational communication.</span>
+                        <span data-lang="zh">星座卫星系统，通过冗余的处理设施调度战略资产，以确保持续不间断的作战通信。</span>
+                    </p>
+                </div>
+                <div class="tech-card">
+                    <div class="card-meta">
+                        <span class="card-id">KT-NW03 // CYBER EYE</span>
+                        <h3 class="card-title">
+                            <span data-lang="en">Sub-Net Scanning Arrays</span>
+                            <span data-lang="zh">子网扫描阵列</span>
+                        </h3>
+                    </div>
+                    <p class="card-desc">
+                        <span data-lang="en">Real-time proactive intrusion counter-measurement systems mapping unauthorized subnet connections within regional infrastructure bounds.</span>
+                        <span data-lang="zh">实时主动侵入反制系统，全面测绘区域基础设施范围内的未授权子网连接。</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE PORTAL 05: QIANT CYBERWARE SUBSIDIARY -->
+        <div id="tab-qiant" class="tab-panel">
+            <h2 class="section-title">
+                <span data-lang="en">QianT Cyberware Subsidiary <span>QIANT-BIO // NEURAL_UPGRADES</span></span>
+                <span data-lang="zh">千太义体全资子公司 <span>千太生物 // 神经升级组件</span></span>
+            </h2>
+            <div class="system-grid">
+                <div class="tech-card">
+                    <div class="card-meta">
+                        <span class="card-id">QT-MK4 // NERVOUS SYSTEM</span>
+                        <h3 class="card-title">QianT Sandevistan Mk.4 / 千太斯安威斯坦4型</h3>
+                    </div>
+                    <p class="card-desc">
+                        <span data-lang="en">The premiere military-grade neural processor expansion. Drastically optimizes temporal dilation, slowing down baseline perception to execute clean combat adjustments under pressure.</span>
+                        <span data-lang="zh">顶级军用级神经处理器扩展组件。大幅优化时间膨胀效率，放慢基准感知，以便在极端高压下进行精准、凌厉的战术机动。</span>
+                    </p>
+                </div>
+                <div class="tech-card">
+                    <div class="card-meta">
+                        <span class="card-id">QT-MK5 // REFLEX UPGRADE</span>
+                        <h3 class="card-title">QianT "Warp Dancer" Sandevistan Mk.5 / 千太“扭曲舞者”5型</h3>
+                    </div>
+                    <p class="card-desc">
+                        <span data-lang="en">An elite hyper-tuned cybernetic array offering peak synchronization performance. Restructures synaptic pathways to squeeze unparalleled reflex responses out of highly trained operators.</span>
+                        <span data-lang="zh">精调的精英级神经义体阵列，提供极高的同步性能。全面重构突触路径，使训练有素的作战人员榨取出无与伦比的反射响应。</span>
+                    </p>
+                </div>
+                <div class="tech-card">
+                    <div class="card-meta">
+                        <span class="card-id">QT-CO03 // BIO-MONITOR</span>
+                        <h3 class="card-title">
+                            <span data-lang="en">Co-Processor Cores</span>
+                            <span data-lang="zh">联控处理器核心</span>
+                        </h3>
+                    </div>
+                    <p class="card-desc">
+                        <span data-lang="en">Direct interface nodes engineered to bridge smart targeted ammunition systems cleanly with sub-dermal weapon tracking cyberware matrices.</span>
+                        <span data-lang="zh">专为智能靶向弹药系统量身定制的直接接口节点，完美桥接皮下武器追踪与义体矩阵。</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grounded Bottom Footer Baseline -->
+        <div class="footer-row">
+            <div class="tagline">
+                <span data-lang="en">this is kangtao. This is intelligence.</span>
+                <span data-lang="zh">这就是康陶。这就是智能。</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Navigation Routing & Localization Engine -->
+    <script>
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+            document.querySelectorAll('.nav-links button').forEach(btn => btn.classList.remove('active'));
             
-            <div class="slogan-container">
-                <div class="orange-line"></div>
-                <div class="slogan-sub">智能电子解决方案</div>
-                <div class="orange-line"></div>
-            </div>
-        </div>
+            document.getElementById('tab-' + tabName).classList.add('active');
+            document.getElementById('btn-' + tabName).classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-        <!-- Status Block with RGB Coming Soon Badge -->
-        <div class="status-block">
-            <div class="badge-coming-soon">Coming Soon</div>
-            <div class="timeline-text">FULL WEBSITE DEPLOYMENT // Q3 2026</div>
-        </div>
+        function setLanguage(lang) {
+            // Toggle language buttons active class
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('lang-' + lang).classList.add('active');
 
-        <!-- Grounded Bottom Tagline -->
-        <div class="tagline">this is kangtao. This is intelligence.</div>
-    </div>
-
+            // Handle DOM element display visibility switches
+            if (lang === 'zh') {
+                document.querySelectorAll('[data-lang="en"]').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('[data-lang="zh"]').forEach(el => el.style.display = 'inline-block');
+            } else {
+                document.querySelectorAll('[data-lang="zh"]').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('[data-lang="en"]').forEach(el => el.style.display = 'inline-block');
+            }
+        }
+    </script>
 </body>
 </html>
