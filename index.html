@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>康陶 KANG TAO</title>
+    
+    <!-- Customized Corporate Favicon with 康陶 KT -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,5 95,28 95,72 50,95 5,72 5,28' fill='%23060606' stroke='%23ff5500' stroke-width='6'/%3E%3Ctext x='50%25' y='46%25' font-family='Noto Sans SC, sans-serif' font-weight='900' font-size='34' fill='%23ffffff' text-anchor='middle' dominant-baseline='central'%3E康陶%3C/text%3E%3Ctext x='50%25' y='76%25' font-family='Orbitron, sans-serif' font-weight='900' font-size='22' fill='%23ff5500' text-anchor='middle' dominant-baseline='central' letter-spacing='2'%3EKT%3C/text%3E%3C/svg%3E">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Plus+Jakarta+Sans:wght@500;700&family=Noto+Sans+SC:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -61,7 +65,7 @@
             flex-direction: column;
         }
 
-        /* Upper Layer: Logo & Right Aligned Slider */
+        /* Upper Layer: Logo Text & Right Aligned Slider */
         .nav-top-row {
             display: flex;
             justify-content: space-between;
@@ -72,16 +76,21 @@
 
         .nav-logo {
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             text-decoration: none;
-            line-height: 0.95;
             cursor: pointer;
         }
 
-        .nav-logo .zh { font-family: 'Noto Sans SC'; font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; }
-        .nav-logo .en { font-family: 'Orbitron'; font-size: 1.3rem; font-weight: 900; margin-left: 8px; padding-bottom: 1px; letter-spacing: 0px; }
+        .logo-text {
+            display: flex;
+            align-items: flex-end;
+            line-height: 0.95;
+        }
 
-        /* Language Slider Absolute Top Right alignment placement */
+        .logo-text .zh { font-family: 'Noto Sans SC'; font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; }
+        .logo-text .en { font-family: 'Orbitron'; font-size: 1.3rem; font-weight: 900; margin-left: 8px; padding-bottom: 1px; letter-spacing: 0px; }
+
+        /* Language Slider */
         .lang-switch {
             font-family: 'Orbitron', 'Noto Sans SC', sans-serif;
             font-size: 0.75rem;
@@ -112,7 +121,7 @@
             color: #ffffff;
         }
 
-        /* Bottom Layer: Main System Functional Routing Links */
+        /* Bottom Layer: Navigation Routing Links */
         .nav-bottom-row {
             display: flex;
             justify-content: center;
@@ -336,10 +345,12 @@
             text-align: left; 
         }
 
-        /* --- MULTILANG SWITCH DEFAULTS --- */
-        [data-lang="zh"] {
-            display: none;
-        }
+        /* --- MULTILANG ENGINE FOR INDEPENDENT TABS --- */
+        body.lang-en [data-lang="zh"] { display: none !important; }
+        body.lang-en [data-lang="en"] { display: inline-block !important; }
+        
+        body.lang-zh [data-lang="en"] { display: none !important; }
+        body.lang-zh [data-lang="zh"] { display: inline-block !important; }
 
         /* --- RESPONSIVE SCALING ADJUSTMENTS --- */
         @media (max-width: 1024px) {
@@ -370,17 +381,19 @@
         }
     </style>
 </head>
-<body>
+<body class="lang-en">
 
     <!-- Integrated Structural Navigation Header Matrix -->
     <nav>
         <!-- Top Row Segment: Branding and Upper-Right Language Toggle Anchor -->
         <div class="nav-top-row">
             <div class="nav-logo" onclick="switchTab('overview')">
-                <span class="zh accent-white">康</span>
-                <span class="zh accent-orange">陶</span>
-                <span class="en accent-white">KANG</span>
-                <span class="en accent-orange">TAO</span>
+                <div class="logo-text">
+                    <span class="zh accent-white">康</span>
+                    <span class="zh accent-orange">陶</span>
+                    <span class="en accent-white">KANG</span>
+                    <span class="en accent-orange">TAO</span>
+                </div>
             </div>
             
             <div class="lang-switch">
@@ -390,13 +403,13 @@
             </div>
         </div>
 
-        <!-- Bottom Row Segment: Dedicated Modular Content Router Controls -->
+        <!-- Bottom Row Segment: Navigation Tab Elements -->
         <div class="nav-bottom-row">
             <ul class="nav-links">
                 <li>
                     <button id="btn-overview" class="active" onclick="switchTab('overview')">
                         <span data-lang="en">Overview</span>
-                        <span data-lang="zh">概述</span>
+                        <span data-lang="zh">企业概述</span>
                     </button>
                 </li>
                 <li>
@@ -408,7 +421,7 @@
                 <li>
                     <button id="btn-defense" onclick="switchTab('defense')">
                         <span data-lang="en">Defense</span>
-                        <span data-lang="zh">防御架构</span>
+                        <span data-lang="zh">国防架构</span>
                     </button>
                 </li>
                 <li>
@@ -442,7 +455,10 @@
                         </div>
                         <div class="slogan-container">
                             <div class="orange-line"></div>
-                            <div class="slogan-sub">智能电子解决方案</div>
+                            <div class="slogan-sub">
+                                <span data-lang="en">高级智能电子解决方案</span>
+                                <span data-lang="zh">高级智能电子解决方案</span>
+                            </div>
                             <div class="orange-line"></div>
                         </div>
                     </div>
@@ -453,7 +469,7 @@
                         </div>
                         <div class="timeline-text">
                             <span data-lang="en">FULL WEBSITE DEPLOYMENT COMING SOON // Q3 2026</span>
-                            <span data-lang="zh">全功能网站即将上线 // 2026年第三季度</span>
+                            <span data-lang="zh">全功能数据站点即将上线 // 2026年第三季度</span>
                         </div>
                     </div>
                 </div>
@@ -464,37 +480,46 @@
         <div id="tab-products" class="tab-panel">
             <h2 class="section-title">
                 <span data-lang="en">Smart Weapon Armaments <span>KT-ARMORY // FIREARMS_DIVISION</span></span>
-                <span data-lang="zh">智能武器军备 <span>KT-兵工厂 // 火器事业部</span></span>
+                <span data-lang="zh">智能武器军备库 <span>KT-兵工厂 // 火器事业部</span></span>
             </h2>
             <div class="system-grid">
                 <div class="tech-card">
                     <div class="card-meta">
                         <span class="card-id">KT-A22 // SMART PISTOL</span>
-                        <h3 class="card-title">A-22B Chao / 鼌</h3>
+                        <h3 class="card-title">
+                            <span data-lang="en">A-22B Chao</span>
+                            <span data-lang="zh">A-22B 鼌</span>
+                        </h3>
                     </div>
                     <p class="card-desc">
                         <span data-lang="en">The corporate standard smart handgun. Fires micro-missiles utilizing a multi-barrel configuration to instantly lock and track multiple evasive threats simultaneously.</span>
-                        <span data-lang="zh">企业标准智能手枪。采用多管配置发射微型导弹，能瞬间锁定并同时追踪多个进行规避的目标。</span>
+                        <span data-lang="zh">企业标准智能手枪。采用多枪管配置发射微型跟踪弹，能瞬时自动锁定并追踪多个进行高速规避的威胁目标。</span>
                     </p>
                 </div>
                 <div class="tech-card">
                     <div class="card-meta">
                         <span class="card-id">KT-G58 // SMART SUBMACHINE GUN</span>
-                        <h3 class="card-title">G-58 Dian / 典</h3>
+                        <h3 class="card-title">
+                            <span data-lang="en">G-58 Dian</span>
+                            <span data-lang="zh">G-58 典</span>
+                        </h3>
                     </div>
                     <p class="card-desc">
                         <span data-lang="en">An ultra-high fire rate defense asset. Operates a smart macro-targeting matrix that delivers surgical accuracy over close-quarters skirmishes without manual correction.</span>
-                        <span data-lang="zh">拥有极高射速的防卫利器。内置智能宏观瞄准矩阵，在近距离遭遇战中无需手动修正即可提供外科手术般的精准打击。</span>
+                        <span data-lang="zh">高射速近战防卫利器。内置智能宏观瞄准矩阵，在近距离突击遭遇战中无需手动瞄准即可提供精准的外科手术式打击。</span>
                     </p>
                 </div>
                 <div class="tech-card">
                     <div class="card-meta">
                         <span class="card-id">KT-L69 // SMART SHOTGUN</span>
-                        <h3 class="card-title">L-69 Zhuo / 卓</h3>
+                        <h3 class="card-title">
+                            <span data-lang="en">L-69 Zhuo</span>
+                            <span data-lang="zh">L-69 卓</span>
+                        </h3>
                     </div>
                     <p class="card-desc">
                         <span data-lang="en">A heavy-ordnance tactical variant. Fires micro-guided pellet cluster bursts that pattern precisely over a targeted neural grid array for maximum termination efficiency.</span>
-                        <span data-lang="zh">重型战术改型智能散弹枪。发射微型制导散弹弹丸束，能够精确覆盖目标神经网阵列，实现最大的歼灭效率。</span>
+                        <span data-lang="zh">重型战术火力改型。发射微型智能制导散射弹丸，能够精确覆盖目标区域内的神经网，实现最高的歼灭效率。</span>
                     </p>
                 </div>
             </div>
@@ -504,7 +529,7 @@
         <div id="tab-defense" class="tab-panel">
             <h2 class="section-title">
                 <span data-lang="en">Corporate Defense Infrastructures <span>KT-DEF // SECURE_SHIELD</span></span>
-                <span data-lang="zh">企业防御安全架构 <span>KT-安全防御 // 防护矩阵</span></span>
+                <span data-lang="zh">企业安全防务架构 <span>KT-防御安全 // 安全防护罩</span></span>
             </h2>
             <div class="system-grid">
                 <div class="tech-card">
@@ -517,7 +542,7 @@
                     </div>
                     <p class="card-desc">
                         <span data-lang="en">Hardware-based sub-dermal shield buffers that counter external tracking and jam rogue electronic interception vectors completely.</span>
-                        <span data-lang="zh">基于硬件的皮下防御缓冲层，全面对抗外部追踪并彻底干扰恶意电子拦截矢量。</span>
+                        <span data-lang="zh">基于硬件的皮下防御缓冲系统，可全面拦截外部追踪并彻底干扰恶意的电子截获矢量。</span>
                     </p>
                 </div>
                 <div class="tech-card">
@@ -530,7 +555,7 @@
                     </div>
                     <p class="card-desc">
                         <span data-lang="en">Military-grade cryptographic firmware protections guarding corporate cybernetic links against invasive neural architecture breaches.</span>
-                        <span data-lang="zh">军工级加密固件保护层，捍卫企业内部网络连接不受侵入式神经架构漏洞的威胁。</span>
+                        <span data-lang="zh">军工级加密固件保护层，悍卫企业内部网络连接不受侵入式神经架构破译与黑客漏洞的威胁。</span>
                     </p>
                 </div>
                 <div class="tech-card">
@@ -543,7 +568,7 @@
                     </div>
                     <p class="card-desc">
                         <span data-lang="en">Automated airborne assets linked directly into VIP vitals tracking matrices, ready to deploy immediate suppressive covering layouts during perimeter stress events.</span>
-                        <span data-lang="zh">自动化空中资产，直接接入VIP生命指征追踪矩阵。在周边遭遇突发威胁时，随时部署瞬时压制性火力掩护。</span>
+                        <span data-lang="zh">自动化空中安防设备，直接接入高管生命特征追踪矩阵。在遭遇突发危机时，能够瞬间部署压制性火力掩护。</span>
                     </p>
                 </div>
             </div>
@@ -566,7 +591,7 @@
                     </div>
                     <p class="card-desc">
                         <span data-lang="en">Decentralized hyper-frequency transceiver relays preventing any data capture or packet decoding across interstellar deep-space frequencies.</span>
-                        <span data-lang="zh">去中心化的超高频收发中继，防止跨区域深空频段的一切数据拦截或数据包解码。</span>
+                        <span data-lang="zh">去中心化的超高频收发中继站，从底层切断跨区域深空频段的一切数据流拦截或网络数据包解码。</span>
                     </p>
                 </div>
                 <div class="tech-card">
@@ -579,7 +604,7 @@
                     </div>
                     <p class="card-desc">
                         <span data-lang="en">Constellation satellite systems that route strategic assets across redundant processing facilities for uninterrupted operational communication.</span>
-                        <span data-lang="zh">星座卫星系统，通过冗余的处理设施调度战略资产，以确保持续不间断的作战通信。</span>
+                        <span data-lang="zh">密集型近地轨道卫星群系统，通过多重冗余处理中心智能分配核心资产，确保战术操作通信不间断。</span>
                     </p>
                 </div>
                 <div class="tech-card">
@@ -587,12 +612,12 @@
                         <span class="card-id">KT-NW03 // CYBER EYE</span>
                         <h3 class="card-title">
                             <span data-lang="en">Sub-Net Scanning Arrays</span>
-                            <span data-lang="zh">子网扫描阵列</span>
+                            <span data-lang="zh">子网扫描扫描系统</span>
                         </h3>
                     </div>
                     <p class="card-desc">
                         <span data-lang="en">Real-time proactive intrusion counter-measurement systems mapping unauthorized subnet connections within regional infrastructure bounds.</span>
-                        <span data-lang="zh">实时主动侵入反制系统，全面测绘区域基础设施范围内的未授权子网连接。</span>
+                        <span data-lang="zh">实时主动式网络侵入反制系统，全面主动测绘并清洗区域基础设施边界内的任何未授权子网连接。</span>
                     </p>
                 </div>
             </div>
@@ -608,21 +633,27 @@
                 <div class="tech-card">
                     <div class="card-meta">
                         <span class="card-id">QT-MK4 // NERVOUS SYSTEM</span>
-                        <h3 class="card-title">QianT Sandevistan Mk.4 / 千太斯安威斯坦4型</h3>
+                        <h3 class="card-title">
+                            <span data-lang="en">QianT Sandevistan Mk.4</span>
+                            <span data-lang="zh">千太 斯安威斯坦 4型</span>
+                        </h3>
                     </div>
                     <p class="card-desc">
                         <span data-lang="en">The premiere military-grade neural processor expansion. Drastically optimizes temporal dilation, slowing down baseline perception to execute clean combat adjustments under pressure.</span>
-                        <span data-lang="zh">顶级军用级神经处理器扩展组件。大幅优化时间膨胀效率，放慢基准感知，以便在极端高压下进行精准、凌厉的战术机动。</span>
+                        <span data-lang="zh">顶级军用级神经处理器扩展组件。大幅优化时间膨胀效率，放慢神经感知基准，以便在极端高压下进行精准完美的战术机动。</span>
                     </p>
                 </div>
                 <div class="tech-card">
                     <div class="card-meta">
                         <span class="card-id">QT-MK5 // REFLEX UPGRADE</span>
-                        <h3 class="card-title">QianT "Warp Dancer" Sandevistan Mk.5 / 千太“扭曲舞者”5型</h3>
+                        <h3 class="card-title">
+                            <span data-lang="en">QianT "Warp Dancer" Sandevistan Mk.5</span>
+                            <span data-lang="zh">千太 “扭曲舞者” 斯安威斯坦 5型</span>
+                        </h3>
                     </div>
                     <p class="card-desc">
                         <span data-lang="en">An elite hyper-tuned cybernetic array offering peak synchronization performance. Restructures synaptic pathways to squeeze unparalleled reflex responses out of highly trained operators.</span>
-                        <span data-lang="zh">精调的精英级神经义体阵列，提供极高的同步性能。全面重构突触路径，使训练有素的作战人员榨取出无与伦比的反射响应。</span>
+                        <span data-lang="zh">针对精锐特工微调的骨灰级神经义体。全面重构突触传递路径，以激发无与伦比的极端神经反射响应速度。</span>
                     </p>
                 </div>
                 <div class="tech-card">
@@ -630,12 +661,12 @@
                         <span class="card-id">QT-CO03 // BIO-MONITOR</span>
                         <h3 class="card-title">
                             <span data-lang="en">Co-Processor Cores</span>
-                            <span data-lang="zh">联控处理器核心</span>
+                            <span data-lang="zh">联控协处理器核心</span>
                         </h3>
                     </div>
                     <p class="card-desc">
                         <span data-lang="en">Direct interface nodes engineered to bridge smart targeted ammunition systems cleanly with sub-dermal weapon tracking cyberware matrices.</span>
-                        <span data-lang="zh">专为智能靶向弹药系统量身定制的直接接口节点，完美桥接皮下武器追踪与义体矩阵。</span>
+                        <span data-lang="zh">专为智能靶向弹药系统量身定制的硬件级直连模块，完美将皮下武器追踪矩阵与手部微端进行融合。</span>
                     </p>
                 </div>
             </div>
@@ -667,11 +698,11 @@
             document.getElementById('lang-' + lang).classList.add('active');
 
             if (lang === 'zh') {
-                document.querySelectorAll('[data-lang="en"]').forEach(el => el.style.display = 'none');
-                document.querySelectorAll('[data-lang="zh"]').forEach(el => el.style.display = 'inline-block');
+                document.body.classList.remove('lang-en');
+                document.body.classList.add('lang-zh');
             } else {
-                document.querySelectorAll('[data-lang="zh"]').forEach(el => el.style.display = 'none');
-                document.querySelectorAll('[data-lang="en"]').forEach(el => el.style.display = 'inline-block');
+                document.body.classList.remove('lang-zh');
+                document.body.classList.add('lang-en');
             }
         }
     </script>
