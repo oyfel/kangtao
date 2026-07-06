@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KANG TAO // SUPPORT</title>
+    <title>Support Portal</title>
     
-    <!-- Customized Corporate Favicon from Screenshot_20260704_010930_Samsung Browser.png -->
+    <!-- Canonical Kang Tao Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23060606'/%3E%3Cpolygon points='15,20 92,20 85,80 8,80' fill='%23ff5500'/%3E%3Ctext x='47%25' y='55%25' font-family='Noto Sans SC, sans-serif' font-weight='900' font-size='42' fill='%23060606' text-anchor='middle' dominant-baseline='central'%3E康陶%3C/text%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Plus+Jakarta+Sans:wght@500;700&family=Noto+Sans+SC:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg-color: #060606;
-            --surface-card: #0f0f12;
-            --surface-hover: #15151a;
             --orange-primary: #ff5500;
-            --orange-glow: rgba(255, 85, 0, 0.4);
+            --orange-glow: rgba(255, 85, 0, 0.3);
             --text-main: #ffffff;
             --text-muted: #888890;
             --border-color: #222226;
@@ -35,284 +33,149 @@
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
             min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            overflow-x: hidden;
         }
 
-        /* Ambient background subtle grid layout */
+        /* Ambient subtle background grid */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
             background-image: 
-                linear-gradient(rgba(255, 85, 0, 0.012) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 85, 0, 0.012) 1px, transparent 1px);
-            background-size: 50px 50px;
+                linear-gradient(rgba(255, 85, 0, 0.008) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 85, 0, 0.008) 1px, transparent 1px);
+            background-size: 60px 60px;
             background-position: center;
             z-index: 0;
             pointer-events: none;
         }
 
-        /* --- STREAMING_CHUNK: Styling global header and language toggle... --> */
-        /* --- GLOBAL NAVIGATION STRUCT --- */
-        nav {
-            width: 100%;
-            border-bottom: 1px solid var(--border-color);
-            background: rgba(6, 6, 6, 0.85);
-            backdrop-filter: blur(16px);
-            z-index: 100;
-            padding: 1.2rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .logo-text {
-            display: flex;
-            align-items: flex-end;
-            line-height: 0.95;
-        }
-
-        .logo-text .zh { font-family: 'Noto Sans SC'; font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; }
-        .logo-text .en { font-family: 'Orbitron'; font-size: 1.3rem; font-weight: 900; margin-left: 8px; padding-bottom: 1px; letter-spacing: 0px; }
-
-        .accent-white { color: #ffffff; }
-        .accent-orange { color: var(--orange-primary); text-shadow: 0 0 15px var(--orange-glow); }
-
-        /* Language Slider */
-        .lang-switch {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-muted);
-            flex-shrink: 0;
-        }
-
-        .lang-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-weight: 700;
-            transition: color 0.3s;
-            padding: 0.2rem 0.4rem;
-        }
-
-        .lang-btn.active {
-            color: var(--orange-primary);
-            text-shadow: 0 0 10px var(--orange-glow);
-        }
-
-        .lang-btn:hover:not(.active) {
-            color: #ffffff;
-        }
-
-        /* --- STREAMING_CHUNK: Structuring the main help request layout container... --> */
-        /* --- LAYOUT WRAPPER --- */
         main {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            position: relative;
-            z-index: 1;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-        }
-
-        /* --- FRIENDLY WELCOME CONTAINER --- */
-        .help-container {
-            background: linear-gradient(180deg, #111113 0%, rgba(17, 17, 19, 0.95) 85%, rgba(6, 6, 6, 0.2) 100%);
-            border: 1px solid var(--border-color);
-            padding: 4.5rem 3rem;
-            border-radius: 24px;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.7);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             text-align: center;
-            max-width: 640px;
+            z-index: 1;
+            max-width: 600px;
             width: 100%;
         }
 
-        /* Canonical Logo Badge from Screenshot */
-        .badge-logo {
-            width: 180px;
-            height: auto;
-            margin-bottom: 2.5rem;
-            filter: drop-shadow(0 0 15px rgba(255, 85, 0, 0.35));
+        .support-container {
+            background: #111113;
+            border: 1px solid var(--border-color);
+            padding: 3.5rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            width: 100%;
         }
 
-        .badge-logo polygon {
-            fill: var(--orange-primary);
-        }
-
-        .badge-logo text {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-weight: 900;
-            font-size: 42px;
-            fill: #060606;
-        }
-
-        .help-title-row {
-            margin-bottom: 1.5rem;
-        }
-
-        .help-title-row h1 {
-            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 800;
+        h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
             letter-spacing: -0.5px;
+            margin-bottom: 1.5rem;
             color: #ffffff;
         }
 
-        .help-desc {
-            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
-            font-size: 1.1rem;
-            line-height: 1.7;
+        .support-text {
+            font-size: 1.05rem;
             color: var(--text-muted);
-            font-weight: 400;
-            max-width: 480px;
+            line-height: 1.6;
+            margin-bottom: 2rem;
         }
 
-        /* Interactive mailto link formatting rules */
-        .mailto-link {
+        .email-link {
+            display: inline-block;
             color: var(--orange-primary);
-            text-shadow: 0 0 12px var(--orange-glow);
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--orange-primary);
+            padding-bottom: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .email-link:hover {
+            color: #ffffff;
+            border-bottom-color: #ffffff;
+            text-shadow: 0 0 10px var(--orange-glow);
+        }
+
+        /* --- BACK TO MAIN SITE NAVIGATION LINK --- */
+        .back-navigation {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .back-link {
+            color: #ffffff;
             text-decoration: underline;
             text-underline-offset: 4px;
-            font-weight: 600;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
+            font-weight: 700;
+            transition: color 0.3s ease;
         }
 
-        .mailto-link:hover {
-            color: #ffffff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        .back-link:hover {
+            color: var(--orange-primary);
         }
 
-        /* --- STREAMING_CHUNK: Constructing standard aesthetic footer boundaries... --> */
-        /* --- GEOMETRIC FOOTER FRAMEWORK --- */
+        /* Footer Element */
         .footer-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             width: 100%;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            padding: 2.5rem 2rem;
+            text-align: center;
+            padding-top: 2rem;
+            z-index: 1;
         }
 
         .tagline { 
-            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
             font-size: 0.8rem; 
-            font-weight: 600; 
-            color: rgba(255, 255, 255, 0.2); 
+            font-weight: 700; 
+            color: rgba(255, 255, 255, 0.15); 
             letter-spacing: 4px; 
             text-transform: uppercase; 
-            text-align: center; 
         }
 
-        /* --- MULTILANG ENGINE FOR INDEPENDENT TABS --- */
-        body.lang-en [data-lang="zh"] { display: none !important; }
-        body.lang-en [data-lang="en"] { display: inline-block !important; }
-        
-        body.lang-zh [data-lang="en"] { display: none !important; }
-        body.lang-zh [data-lang="zh"] { display: inline-block !important; }
-
-        /* --- RESPONSIVE SCALING ADJUSTMENTS --- */
-        @media (max-width: 768px) {
-            nav { padding: 1.2rem 1.5rem; }
-            main { padding: 2rem 1rem; }
-            .help-container { padding: 3.5rem 1.5rem; }
-            
-            .badge-logo { width: 140px; margin-bottom: 2rem; }
-            .help-title-row h1 { font-size: 1.7rem; }
-            .help-desc { font-size: 0.95rem; }
-
-            .footer-row { padding-top: 2rem; }
-            .tagline { font-size: 0.7rem; letter-spacing: 3px; }
+        /* Responsive scaling adjustments */
+        @media (max-width: 480px) {
+            .support-container { padding: 2.5rem 1.5rem; }
+            h1 { font-size: 1.5rem; }
+            .support-text { font-size: 0.95rem; }
+            .back-navigation { font-size: 0.85rem; }
         }
     </style>
 </head>
-<body class="lang-en">
-
-    <!-- Integrated Structural Navigation Header Matrix -->
-    <nav>
-        <div class="nav-logo" onclick="window.location.href='index.html'">
-            <div class="logo-text">
-                <span class="zh accent-white">康</span>
-                <span class="zh accent-orange">陶</span>
-                <span class="en accent-white">KANG</span>
-                <span class="en accent-orange">TAO</span>
-            </div>
-        </div>
-        
-        <div class="lang-switch">
-            <button id="lang-en" class="lang-btn active" onclick="setLanguage('en')">ENG</button>
-            <span>|</span>
-            <button id="lang-zh" class="lang-btn" onclick="setLanguage('zh')">中文</button>
-        </div>
-    </nav>
+<body>
 
     <main>
-        <div class="help-container">
-            <!-- Precise replication of screenshot corporate logo -->
-            <svg class="badge-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="15,20 92,20 85,80 8,80" />
-                <text x="47%" y="55%" text-anchor="middle" dominant-baseline="central">康陶</text>
-            </svg>
-
-            <div class="help-title-row">
-                <h1>
-                    <span data-lang="en">Support Portal</span>
-                    <span data-lang="zh">客服支持中心</span>
-                </h1>
-            </div>
-
-            <p class="help-desc">
-                <span data-lang="en">For assistance, email us at <a href="mailto:help@kangtao.co" class="mailto-link">help@kangtao.co</a></span>
-                <span data-lang="zh">如需帮助，请发送电子邮件至 <a href="mailto:help@kangtao.co" class="mailto-link">help@kangtao.co</a></span>
+        <div class="support-container">
+            <h1>Support Portal</h1>
+            
+            <p class="support-text">
+                For assistance, please email us at 
+                <a href="mailto:help@kangtao.co" class="email-link">help@kangtao.co</a>
             </p>
+
+            <!-- Back to Main Site Dynamic Link Anchor -->
+            <div class="back-navigation">
+                <a href="https://kangtao.co" class="back-link">Click here</a> to go back
+            </div>
         </div>
     </main>
 
-    <!-- Grounded Bottom Footer Baseline -->
     <div class="footer-row">
-        <div class="tagline">
-            <span data-lang="en">THIS IS KANGTAO. THIS IS INTELLIGENCE.</span>
-            <span data-lang="zh">这就是康陶。这就是智能。</span>
-        </div>
+        <div class="tagline">THIS IS KANGTAO. THIS IS INTELLIGENCE.</div>
     </div>
 
-    <!-- Scripts & Localization Routines -->
-    <script>
-        function setLanguage(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('lang-' + lang).classList.add('active');
-
-            if (lang === 'zh') {
-                document.body.classList.remove('lang-en');
-                document.body.classList.add('lang-zh');
-            } else {
-                document.body.classList.remove('lang-zh');
-                document.body.classList.add('lang-en');
-            }
-        }
-    </script>
 </body>
 </html>
