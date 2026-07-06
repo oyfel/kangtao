@@ -3,20 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Portal</title>
     
-    <!-- Canonical Kang Tao Favicon -->
+    <!-- PRIMARY SEARCH ENGINE METADATA -->
+    <title>KANG TAO // SUPPORT PORTAL</title>
+    <meta name="description" content="Reach the Kang Tao support division directly. Send an assistance email to resolve hardware upgrades, tactical firmware issues, or supply chain requests.">
+    <meta name="keywords" content="Kang Tao support, 康陶, customer service, firmware assistance, neural systems diagnostics">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://kangtao.co/help">
+
+    <!-- OPEN GRAPH PREVIEW METADATA -->
+    <meta property="og:title" content="KANG TAO // SUPPORT PORTAL">
+    <meta property="og:description" content="Contact the Kang Tao global customer service nodes for secure product diagnostic support.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kangtao.co/help">
+    <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23060606'/%3E%3Cpolygon points='15,20 92,20 85,80 8,80' fill='%23ff5500'/%3E%3Ctext x='47%25' y='55%25' font-family='Noto Sans SC, sans-serif' font-weight='900' font-size='42' fill='%23060606' text-anchor='middle' dominant-baseline='central'%3E康陶%3C/text%3E%3C/svg%3E">
+
+    <!-- TWITTER METADATA -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="KANG TAO // Help Division">
+    <meta name="twitter:description" content="Access instant client assistance nodes.">
+    <meta name="twitter:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23060606'/%3E%3Cpolygon points='15,20 92,20 85,80 8,80' fill='%23ff5500'/%3E%3Ctext x='47%25' y='55%25' font-family='Noto Sans SC, sans-serif' font-weight='900' font-size='42' fill='%23060606' text-anchor='middle' dominant-baseline='central'%3E康陶%3C/text%3E%3C/svg%3E">
+
+    <!-- JSON-LD Contact Point Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Kang Tao Support Portal",
+      "description": "Secure customer portal connecting patrons to localized customer support nodes.",
+      "mainEntity": {
+        "@type": "ContactPoint",
+        "email": "help@kangtao.co",
+        "contactType": "customer support",
+        "availableLanguage": ["en", "zh"]
+      }
+    }
+    </script>
+    
+    <!-- Optimized Favicon from Screenshot_20260704_010930_Samsung Browser.png -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23060606'/%3E%3Cpolygon points='15,20 92,20 85,80 8,80' fill='%23ff5500'/%3E%3Ctext x='47%25' y='55%25' font-family='Noto Sans SC, sans-serif' font-weight='900' font-size='42' fill='%23060606' text-anchor='middle' dominant-baseline='central'%3E康陶%3C/text%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Plus+Jakarta+Sans:wght@500;700&family=Noto+Sans+SC:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg-color: #060606;
+            --surface-card: #0f0f12;
+            --surface-hover: #15151a;
             --orange-primary: #ff5500;
-            --orange-glow: rgba(255, 85, 0, 0.3);
+            --orange-glow: rgba(255, 85, 0, 0.4);
             --text-main: #ffffff;
             --text-muted: #888890;
             --border-color: #222226;
@@ -28,84 +65,186 @@
             padding: 0;
         }
 
+        /* Keyboard Accessibility - Focus styling */
+        *:focus-visible {
+            outline: 2px solid var(--orange-primary);
+            outline-offset: 4px;
+        }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            align-items: center;
-            padding: 2rem;
-            overflow-x: hidden;
         }
 
-        /* Ambient subtle background grid */
+        /* Ambient background subtle grid layout */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
             background-image: 
-                linear-gradient(rgba(255, 85, 0, 0.008) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 85, 0, 0.008) 1px, transparent 1px);
-            background-size: 60px 60px;
+                linear-gradient(rgba(255, 85, 0, 0.012) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 85, 0, 0.012) 1px, transparent 1px);
+            background-size: 50px 50px;
             background-position: center;
             z-index: 0;
             pointer-events: none;
         }
 
+        /* --- STREAMING_CHUNK: Styling global header and language toggle... --> */
+        /* --- GLOBAL NAVIGATION STRUCT --- */
+        nav {
+            width: 100%;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(6, 6, 6, 0.85);
+            backdrop-filter: blur(16px);
+            z-index: 100;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-text {
+            display: flex;
+            align-items: flex-end;
+            line-height: 0.95;
+        }
+
+        .logo-text .zh { font-family: 'Noto Sans SC'; font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; }
+        .logo-text .en { font-family: 'Orbitron'; font-size: 1.3rem; font-weight: 900; margin-left: 8px; padding-bottom: 1px; letter-spacing: 0px; }
+
+        .accent-white { color: #ffffff; }
+        .accent-orange { color: var(--orange-primary); text-shadow: 0 0 15px var(--orange-glow); }
+
+        /* Language Slider */
+        .lang-switch {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 700;
+            transition: color 0.3s;
+            padding: 0.2rem 0.4rem;
+        }
+
+        .lang-btn.active {
+            color: var(--orange-primary);
+            text-shadow: 0 0 10px var(--orange-glow);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: #ffffff;
+        }
+
+        /* --- STREAMING_CHUNK: Structuring the main help request layout container... --> */
+        /* --- LAYOUT WRAPPER --- */
         main {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            z-index: 1;
-            max-width: 600px;
-            width: 100%;
         }
 
-        .support-container {
-            background: #111113;
+        /* --- FRIENDLY WELCOME CONTAINER --- */
+        .help-container {
+            background: linear-gradient(180deg, #111113 0%, rgba(17, 17, 19, 0.95) 85%, rgba(6, 6, 6, 0.2) 100%);
             border: 1px solid var(--border-color);
-            padding: 3.5rem 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            padding: 4.5rem 3rem;
+            border-radius: 24px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 640px;
             width: 100%;
         }
 
-        h1 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+        /* Canonical Logo Badge from Screenshot */
+        .badge-logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 2.5rem;
+            filter: drop-shadow(0 0 15px rgba(255, 85, 0, 0.35));
+        }
+
+        .badge-logo polygon {
+            fill: var(--orange-primary);
+        }
+
+        .badge-logo text {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-weight: 900;
+            font-size: 42px;
+            fill: #060606;
+        }
+
+        .help-title-row {
             margin-bottom: 1.5rem;
+        }
+
+        .help-title-row h1 {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
             color: #ffffff;
         }
 
-        .support-text {
-            font-size: 1.05rem;
+        .help-desc {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.7;
             color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 2rem;
+            font-weight: 400;
+            max-width: 480px;
         }
 
-        .email-link {
-            display: inline-block;
+        /* Interactive mailto link formatting rules */
+        .mailto-link {
             color: var(--orange-primary);
-            font-weight: 700;
-            text-decoration: none;
-            border-bottom: 1px dashed var(--orange-primary);
-            padding-bottom: 2px;
-            transition: all 0.3s ease;
+            text-shadow: 0 0 12px var(--orange-glow);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: 600;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
-        .email-link:hover {
+        .mailto-link:hover {
             color: #ffffff;
-            border-bottom-color: #ffffff;
-            text-shadow: 0 0 10px var(--orange-glow);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
         /* --- BACK TO MAIN SITE NAVIGATION LINK --- */
@@ -115,6 +254,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             font-size: 0.9rem;
             color: var(--text-muted);
+            width: 100%;
         }
 
         .back-link {
@@ -129,53 +269,121 @@
             color: var(--orange-primary);
         }
 
-        /* Footer Element */
+        /* --- STREAMING_CHUNK: Constructing standard aesthetic footer boundaries... --> */
+        /* --- GEOMETRIC FOOTER FRAMEWORK --- */
         .footer-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
-            text-align: center;
-            padding-top: 2rem;
-            z-index: 1;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 2.5rem 2rem;
         }
 
         .tagline { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
+            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif; 
             font-size: 0.8rem; 
-            font-weight: 700; 
-            color: rgba(255, 255, 255, 0.15); 
+            font-weight: 600; 
+            color: rgba(255, 255, 255, 0.2); 
             letter-spacing: 4px; 
             text-transform: uppercase; 
+            text-align: center; 
         }
 
-        /* Responsive scaling adjustments */
-        @media (max-width: 480px) {
-            .support-container { padding: 2.5rem 1.5rem; }
-            h1 { font-size: 1.5rem; }
-            .support-text { font-size: 0.95rem; }
-            .back-navigation { font-size: 0.85rem; }
+        /* --- MULTILANG ENGINE FOR INDEPENDENT TABS --- */
+        body.lang-en [data-lang="zh"] { display: none !important; }
+        body.lang-en [data-lang="en"] { display: inline-block !important; }
+        
+        body.lang-zh [data-lang="en"] { display: none !important; }
+        body.lang-zh [data-lang="zh"] { display: inline-block !important; }
+
+        /* --- RESPONSIVE SCALING ADJUSTMENTS --- */
+        @media (max-width: 768px) {
+            nav { padding: 1.2rem 1.5rem; }
+            main { padding: 2rem 1rem; }
+            .help-container { padding: 3.5rem 1.5rem; }
+            
+            .badge-logo { width: 140px; margin-bottom: 2rem; }
+            .help-title-row h1 { font-size: 1.7rem; }
+            .help-desc { font-size: 0.95rem; }
+
+            .footer-row { padding-top: 2rem; }
+            .tagline { font-size: 0.7rem; letter-spacing: 3px; }
         }
     </style>
 </head>
-<body>
+<body class="lang-en">
+
+    <!-- Integrated Structural Navigation Header Matrix -->
+    <header>
+        <nav aria-label="Support Directory">
+            <a class="nav-logo" href="index.html" aria-label="Kang Tao Home">
+                <div class="logo-text">
+                    <span class="zh accent-white">康</span>
+                    <span class="zh accent-orange">陶</span>
+                    <span class="en accent-white">KANG</span>
+                    <span class="en accent-orange">TAO</span>
+                </div>
+            </a>
+            
+            <div class="lang-switch" role="status" aria-live="polite">
+                <button id="lang-en" class="lang-btn active" onclick="setLanguage('en')" aria-label="Switch interface to English">ENG</button>
+                <span>|</span>
+                <button id="lang-zh" class="lang-btn" onclick="setLanguage('zh')" aria-label="Switch interface to Chinese">中文</button>
+            </div>
+        </nav>
+    </header>
 
     <main>
-        <div class="support-container">
-            <h1>Support Portal</h1>
-            
-            <p class="support-text">
-                For assistance, please email us at 
-                <a href="mailto:help@kangtao.co" class="email-link">help@kangtao.co</a>
+        <section class="help-container" aria-labelledby="help-title">
+            <!-- Precise replication of screenshot corporate logo -->
+            <svg class="badge-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <polygon points="15,20 92,20 85,80 8,80" />
+                <text x="47%" y="55%" text-anchor="middle" dominant-baseline="central">康陶</text>
+            </svg>
+
+            <div class="help-title-row">
+                <h1 id="help-title">
+                    <span data-lang="en">Support Portal</span>
+                    <span data-lang="zh">客服支持中心</span>
+                </h1>
+            </div>
+
+            <p class="help-desc">
+                <span data-lang="en">For assistance, email us at <a href="mailto:help@kangtao.co" class="mailto-link" aria-label="Send support email to help@kangtao.co">help@kangtao.co</a></span>
+                <span data-lang="zh">如需帮助，请发送电子邮件至 <a href="mailto:help@kangtao.co" class="mailto-link" aria-label="发送客服支持邮件至 help@kangtao.co">help@kangtao.co</a></span>
             </p>
 
             <!-- Back to Main Site Dynamic Link Anchor -->
             <div class="back-navigation">
-                <a href="https://kangtao.co" class="back-link">Click here</a> to go back
+                <span data-lang="en"><a href="index.html" class="back-link" aria-label="Return to index dashboard page">Click here</a> to go back</span>
+                <span data-lang="zh"><a href="index.html" class="back-link" aria-label="返回企业首页仪表盘">点击此处</a> 返回首页</span>
             </div>
-        </div>
+        </section>
     </main>
 
-    <div class="footer-row">
-        <div class="tagline">THIS IS KANGTAO. THIS IS INTELLIGENCE.</div>
-    </div>
+    <!-- Grounded Bottom Footer Baseline -->
+    <footer class="footer-row">
+        <div class="tagline">
+            <span data-lang="en">THIS IS KANGTAO. THIS IS INTELLIGENCE.</span>
+            <span data-lang="zh">这就是康陶。这就是智能。</span>
+        </div>
+    </footer>
 
+    <!-- Scripts & Localization Routines -->
+    <script>
+        function setLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('lang-' + lang).classList.add('active');
+
+            if (lang === 'zh') {
+                document.body.classList.remove('lang-en');
+                document.body.classList.add('lang-zh');
+            } else {
+                document.body.classList.remove('lang-zh');
+                document.body.classList.add('lang-en');
+            }
+        }
+    </script>
 </body>
 </html>
