@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- PRIMARY SEARCH ENGINE METADATA -->
+    <title>KANG TAO // OFFICIAL SHOP</title>
+    <meta name="description" content="Official retail storefront for Kang Tao gear, hardware assets, tactical accessories, and smart armaments. Launching in 2027.">
+    <meta name="keywords" content="Kang Tao official shop, 康陶, smart gear, combat supply link">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://shop.kangtao.co">
+
+    <!-- OPEN GRAPH PREVIEW METADATA -->
+    <meta property="og:title" content="KANG TAO // OFFICIAL SHOP">
+    <meta property="og:description" content="Secure retail operations launch scheduled for 2027. Subscribe for catalog distribution updates.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shop.kangtao.co">
+    <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23060606'/%3E%3Cpolygon points='15,20 92,20 85,80 8,80' fill='%23ff5500'/%3E%3Ctext x='47%25' y='55%25' font-family='Noto Sans SC, sans-serif' font-weight='900' font-size='42' fill='%23060606' text-anchor='middle' dominant-baseline='central'%3E康陶%3C/text%3E%3C/svg%3E">
+
+    <!-- TWITTER PREVIEW METADATA -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="KANG TAO // Shop Portal">
+    <meta name="twitter:description" content="Official retail storefront launching 2027.">
+    <meta name="twitter:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23060606'/%3E%3Cpolygon points='15,20 92,20 85,80 8,80' fill='%23ff5500'/%3E%3Ctext x='47%25' y='55%25' font-family='Noto Sans SC, sans-serif' font-weight='900' font-size='42' fill='%23060606' text-anchor='middle' dominant-baseline='central'%3E康陶%3C/text%3E%3C/svg%3E">
+
+    <!-- JSON-LD Structured Data Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebStore",
+      "name": "Kang Tao Official Shop",
+      "description": "Premium retail store pipeline for strategic equipment and cybernetic gear.",
+      "url": "https://shop.kangtao.co",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      }
+    }
+    </script>
+    
+    <!-- Optimized Favicon from Screenshot_20260704_010930_Samsung Browser.png -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23060606'/%3E%3Cpolygon points='15,20 92,20 85,80 8,80' fill='%23ff5500'/%3E%3Ctext x='47%25' y='55%25' font-family='Noto Sans SC, sans-serif' font-weight='900' font-size='42' fill='%23060606' text-anchor='middle' dominant-baseline='central'%3E康陶%3C/text%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Plus+Jakarta+Sans:wght@500;700&family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #060606;
+            --surface-card: #0f0f12;
+            --surface-hover: #15151a;
+            --orange-primary: #ff5500;
+            --orange-glow: rgba(255, 85, 0, 0.4);
+            --text-main: #ffffff;
+            --text-muted: #888890;
+            --border-color: #222226;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Keyboard Accessibility */
+        *:focus-visible {
+            outline: 2px solid var(--orange-primary);
+            outline-offset: 4px;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Ambient background grid layout */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 85, 0, 0.012) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 85, 0, 0.012) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* --- GLOBAL NAVIGATION STRUCT --- */
+        nav {
+            width: 100%;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(6, 6, 6, 0.85);
+            backdrop-filter: blur(16px);
+            z-index: 100;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-text {
+            display: flex;
+            align-items: flex-end;
+            line-height: 0.95;
+        }
+
+        .logo-text .zh { font-family: 'Noto Sans SC'; font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; }
+        .logo-text .en { font-family: 'Orbitron'; font-size: 1.3rem; font-weight: 900; margin-left: 8px; padding-bottom: 1px; letter-spacing: 0px; }
+
+        /* Language Slider */
+        .lang-switch {
+            font-family: 'Orbitron', 'Noto Sans SC', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 700;
+            transition: color 0.3s;
+            padding: 0.2rem 0.4rem;
+        }
+
+        .lang-btn.active {
+            color: var(--orange-primary);
+            text-shadow: 0 0 10px var(--orange-glow);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: #ffffff;
+        }
+
+        /* --- LAYOUT WRAPPER --- */
+        main {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- FRIENDLY WELCOME CONTAINER --- */
+        .welcome-container {
+            background: linear-gradient(180deg, #111113 0%, rgba(17, 17, 19, 0.95) 85%, rgba(6, 6, 6, 0.2) 100%);
+            border: 1px solid var(--border-color);
+            padding: 4.5rem 3rem;
+            border-radius: 24px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* Canonical Logo Badge from Screenshot */
+        .badge-logo {
+            width: 220px;
+            height: auto;
+            margin-bottom: 2.5rem;
+            filter: drop-shadow(0 0 15px rgba(255, 85, 0, 0.35));
+        }
+
+        .badge-logo polygon {
+            fill: var(--orange-primary);
+        }
+
+        .badge-logo text {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-weight: 900;
+            font-size: 42px;
+            fill: #060606;
+        }
+
+        .shop-title-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .shop-title-row h1 {
+            font-family: 'Orbitron', 'Noto Sans SC', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .shop-title-row .highlight {
+            color: var(--orange-primary);
+            text-shadow: 0 0 10px var(--orange-glow);
+        }
+
+        /* --- GEOMETRIC FOOTER FRAMEWORK --- */
+        .footer-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 2.5rem 2rem;
+        }
+
+        .tagline { 
+            font-family: 'Orbitron', 'Noto Sans SC', sans-serif; 
+            font-size: 0.85rem; 
+            font-weight: 700; 
+            color: rgba(255, 255, 255, 0.2); 
+            letter-spacing: 4px; 
+            text-transform: uppercase; 
+            text-align: center; 
+        }
+
+        /* --- MULTILANG ENGINE FOR INDEPENDENT TABS --- */
+        body.lang-en [data-lang="zh"] { display: none !important; }
+        body.lang-en [data-lang="en"] { display: inline-block !important; }
+        
+        body.lang-zh [data-lang="en"] { display: none !important; }
+        body.lang-zh [data-lang="zh"] { display: inline-block !important; }
+
+        /* --- RESPONSIVE SCALING ADJUSTMENTS --- */
+        @media (max-width: 768px) {
+            nav { padding: 1.2rem 1.5rem; }
+            main { padding: 2rem 1rem; }
+            .welcome-container { padding: 3.5rem 1.5rem; }
+            
+            .badge-logo { width: 180px; margin-bottom: 2rem; }
+            .shop-title-row h1 { font-size: 1.6rem; letter-spacing: 2px; }
+
+            .footer-row { padding-top: 2rem; }
+            .tagline { font-size: 0.75rem; letter-spacing: 3px; }
+        }
+    </style>
+</head>
+<body class="lang-en">
+
+    <!-- Integrated Structural Navigation Header Matrix -->
+    <header>
+        <nav aria-label="E-Commerce Hub">
+            <a class="nav-logo" href="index.html" aria-label="Kang Tao Home">
+                <div class="logo-text">
+                    <span class="zh accent-white">康</span>
+                    <span class="zh accent-orange">陶</span>
+                    <span class="en accent-white">KANG</span>
+                    <span class="en accent-orange">TAO</span>
+                </div>
+            </a>
+            
+            <div class="lang-switch" role="status" aria-live="polite">
+                <button id="lang-en" class="lang-btn active" onclick="setLanguage('en')" aria-label="Switch interface to English">ENG</button>
+                <span>|</span>
+                <button id="lang-zh" class="lang-btn" onclick="setLanguage('zh')" aria-label="Switch interface to Chinese">中文</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome-container" aria-labelledby="shop-status">
+            <!-- Precise replication of screenshot corporate logo -->
+            <svg class="badge-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <polygon points="15,20 92,20 85,80 8,80" />
+                <text x="47%" y="55%" text-anchor="middle" dominant-baseline="central">康陶</text>
+            </svg>
+
+            <div class="shop-title-row">
+                <h1 id="shop-status">
+                    <span data-lang="en">Coming <span class="highlight">2027</span></span>
+                    <span data-lang="zh">2027年 <span class="highlight">上线</span></span>
+                </h1>
+            </div>
+        </section>
+    </main>
+
+    <!-- Grounded Bottom Footer Baseline -->
+    <footer class="footer-row">
+        <div class="tagline">
+            <span data-lang="en">THIS IS KANGTAO. THIS IS INTELLIGENCE.</span>
+            <span data-lang="zh">这就是康陶。这就是智能。</span>
+        </div>
+    </footer>
+
+    <!-- Scripts & Localization Routines -->
+    <script>
+        function setLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('lang-' + lang).classList.add('active');
+
+            if (lang === 'zh') {
+                document.body.classList.remove('lang-en');
+                document.body.classList.add('lang-zh');
+            } else {
+                document.body.classList.remove('lang-zh');
+                document.body.classList.add('lang-en');
+            }
+        }
+    </script>
+</body>
+</html>
