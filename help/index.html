@@ -35,12 +35,12 @@
         "@type": "ContactPoint",
         "email": "help@kangtao.co",
         "contactType": "customer support",
-        "availableLanguage": ["en", "zh"]
+        "availableLanguage": "en"
       }
     }
     </script>
     
-    <!-- Optimized Favicon from Screenshot_20260704_010930_Samsung Browser.png -->
+    <!-- Optimized Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23060606'/%3E%3Cpolygon points='15,20 92,20 85,80 8,80' fill='%23ff5500'/%3E%3Ctext x='47%25' y='55%25' font-family='Noto Sans SC, sans-serif' font-weight='900' font-size='42' fill='%23060606' text-anchor='middle' dominant-baseline='central'%3E康陶%3C/text%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,7 +65,6 @@
             padding: 0;
         }
 
-        /* Keyboard Accessibility - Focus styling */
         *:focus-visible {
             outline: 2px solid var(--orange-primary);
             outline-offset: 4px;
@@ -83,7 +82,6 @@
             justify-content: space-between;
         }
 
-        /* Ambient background subtle grid layout */
         body::before {
             content: '';
             position: fixed;
@@ -106,7 +104,7 @@
             z-index: 100;
             padding: 1.2rem 2rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
         }
 
@@ -129,37 +127,6 @@
         .accent-white { color: #ffffff; }
         .accent-orange { color: var(--orange-primary); text-shadow: 0 0 15px var(--orange-glow); }
 
-        /* Language Slider */
-        .lang-switch {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-muted);
-            flex-shrink: 0;
-        }
-
-        .lang-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-weight: 700;
-            transition: color 0.3s;
-            padding: 0.2rem 0.4rem;
-        }
-
-        .lang-btn.active {
-            color: var(--orange-primary);
-            text-shadow: 0 0 10px var(--orange-glow);
-        }
-
-        .lang-btn:hover:not(.active) {
-            color: #ffffff;
-        }
-
         /* --- LAYOUT WRAPPER --- */
         main {
             max-width: 1200px;
@@ -175,7 +142,7 @@
             align-items: center;
         }
 
-        /* --- FRIENDLY WELCOME CONTAINER --- */
+        /* --- WELCOME CONTAINER --- */
         .help-container {
             background: linear-gradient(180deg, #111113 0%, rgba(17, 17, 19, 0.95) 85%, rgba(6, 6, 6, 0.2) 100%);
             border: 1px solid var(--border-color);
@@ -190,7 +157,7 @@
             width: 100%;
         }
 
-        /* Canonical Logo Badge from Screenshot */
+        /* Canonical Logo Badge */
         .badge-logo {
             width: 180px;
             height: auto;
@@ -214,7 +181,7 @@
         }
 
         .help-title-row h1 {
-            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 2.2rem;
             font-weight: 800;
             letter-spacing: -0.5px;
@@ -222,7 +189,7 @@
         }
 
         .help-desc {
-            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1.1rem;
             line-height: 1.7;
             color: var(--text-muted);
@@ -230,7 +197,7 @@
             max-width: 480px;
         }
 
-        /* Interactive mailto link formatting rules */
+        /* Interactive mailto link formatting */
         .mailto-link {
             color: var(--orange-primary);
             text-shadow: 0 0 12px var(--orange-glow);
@@ -267,7 +234,7 @@
             color: var(--orange-primary);
         }
 
-        /* --- GEOMETRIC FOOTER FRAMEWORK --- */
+        /* --- MINIMAL FOOTER --- */
         .footer-row {
             display: flex;
             justify-content: center;
@@ -276,23 +243,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.03);
             padding: 2.5rem 2rem;
         }
-
-        .tagline { 
-            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif; 
-            font-size: 0.8rem; 
-            font-weight: 600; 
-            color: rgba(255, 255, 255, 0.2); 
-            letter-spacing: 4px; 
-            text-transform: uppercase; 
-            text-align: center; 
-        }
-
-        /* --- MULTILANG ENGINE FOR INDEPENDENT TABS --- */
-        body.lang-en [data-lang="zh"] { display: none !important; }
-        body.lang-en [data-lang="en"] { display: inline-block !important; }
-        
-        body.lang-zh [data-lang="en"] { display: none !important; }
-        body.lang-zh [data-lang="zh"] { display: inline-block !important; }
 
         /* --- RESPONSIVE SCALING ADJUSTMENTS --- */
         @media (max-width: 768px) {
@@ -303,13 +253,11 @@
             .badge-logo { width: 140px; margin-bottom: 2rem; }
             .help-title-row h1 { font-size: 1.7rem; }
             .help-desc { font-size: 0.95rem; }
-
             .footer-row { padding-top: 2rem; }
-            .tagline { font-size: 0.7rem; letter-spacing: 3px; }
         }
     </style>
 </head>
-<body class="lang-en">
+<body>
 
     <!-- Integrated Structural Navigation Header Matrix -->
     <header>
@@ -322,65 +270,33 @@
                     <span class="en accent-orange">TAO</span>
                 </div>
             </a>
-            
-            <div class="lang-switch" role="status" aria-live="polite">
-                <button id="lang-en" class="lang-btn active" onclick="setLanguage('en')" aria-label="Switch interface to English">ENG</button>
-                <span>|</span>
-                <button id="lang-zh" class="lang-btn" onclick="setLanguage('zh')" aria-label="Switch interface to Chinese">中文</button>
-            </div>
         </nav>
     </header>
 
     <main>
         <section class="help-container" aria-labelledby="help-title">
-            <!-- Precise replication of screenshot corporate logo -->
             <svg class="badge-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <polygon points="15,20 92,20 85,80 8,80" />
+                <polygon points="15,20 92,20 85,80 8,80" fill="#ff5500" />
                 <text x="47%" y="55%" text-anchor="middle" dominant-baseline="central">康陶</text>
             </svg>
 
             <div class="help-title-row">
-                <h1 id="help-title">
-                    <span data-lang="en">Support Portal</span>
-                    <span data-lang="zh">客服支持中心</span>
-                </h1>
+                <h1 id="help-title">Support Portal</h1>
             </div>
 
             <p class="help-desc">
-                <span data-lang="en">For assistance, email us at <a href="mailto:help@kangtao.co" class="mailto-link" aria-label="Send support email to help@kangtao.co">help@kangtao.co</a></span>
-                <span data-lang="zh">如需帮助，请发送电子邮件至 <a href="mailto:help@kangtao.co" class="mailto-link" aria-label="发送客服支持邮件至 help@kangtao.co">help@kangtao.co</a></span>
+                For assistance, email us at <a href="mailto:help@kangtao.co" class="mailto-link" aria-label="Send support email to help@kangtao.co">help@kangtao.co</a>
             </p>
 
-            <!-- Back to Main Site Dynamic Link Anchor -->
+            <!-- Back to Main Site Link -->
             <div class="back-navigation">
-                <span data-lang="en"><a href="https://kangtao.co" class="back-link" aria-label="Return to index dashboard page">Click here</a> to go back</span>
-                <span data-lang="zh"><a href="https://kangtao.co" class="back-link" aria-label="返回企业首页仪表盘">点击此处</a> 返回首页</span>
+                <span><a href="https://kangtao.co" class="back-link" aria-label="Return to index dashboard page">Click here</a> to go back</span>
             </div>
         </section>
     </main>
 
-    <!-- Grounded Bottom Footer Baseline -->
-    <footer class="footer-row">
-        <div class="tagline">
-            <span data-lang="en">THIS IS KANGTAO. THIS IS INTELLIGENCE.</span>
-            <span data-lang="zh">这就是康陶。这就是智能。</span>
-        </div>
-    </footer>
+    <!-- Structural Empty Base Padding Footer -->
+    <footer class="footer-row"></footer>
 
-    <!-- Scripts & Localization Routines -->
-    <script>
-        function setLanguage(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('lang-' + lang).classList.add('active');
-
-            if (lang === 'zh') {
-                document.body.classList.remove('lang-en');
-                document.body.classList.add('lang-zh');
-            } else {
-                document.body.classList.remove('lang-zh');
-                document.body.classList.add('lang-en');
-            }
-        }
-    </script>
 </body>
 </html>
