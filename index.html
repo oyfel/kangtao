@@ -1,1 +1,225 @@
-yo wsg
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- PRIMARY SEARCH ENGINE METADATA -->
+    <title>KANG TAO // Gateway</title>
+    <meta name="description" content="Official Gateway portal for Kang Tao. Access tactical defense gear, network components, and secure portals.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://kangtao.co">
+
+    <!-- Optimized Corporate Favicon based on vector artwork -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23060606'/%3E%3Cpolygon points='10,14 90,14 82,56 10,56' fill='%23ff5500'/%3E%3Cpath d='M32,18 L32,24 M18,24 L46,24 M22,24 L22,50 M22,30 L42,30 M32,30 L32,42 M26,35 L38,35 M26,40 L38,40 M28,42 L22,48 M36,42 L42,48' stroke='%23060606' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M52,21 L52,51 M52,24 C57,24 57,30 52,30 M52,30 C57,30 57,36 52,36 M60,24 L78,24 M64,29 L74,29 L74,41 L64,41 Z M64,35 L74,35 M69,41 L69,48 M61,48 L77,48' stroke='%23060606' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #060606;
+            --orange-primary: #ff5500;
+            --orange-glow: rgba(255, 85, 0, 0.4);
+            --text-main: #ffffff;
+            --text-muted: #888890;
+            --border-color: #222226;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 85, 0, 0.012) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 85, 0, 0.012) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        /* Centered Gateway Card Container */
+        .gateway-card {
+            background: linear-gradient(180deg, #111113 0%, rgba(17, 17, 19, 0.95) 85%, rgba(6, 6, 6, 0.2) 100%);
+            border: 1px solid var(--border-color);
+            padding: 5rem 3rem;
+            border-radius: 24px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.75);
+            max-width: 620px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Brand Graphic SVG container ensures characters are treated strictly as vector images */
+        .brand-vector {
+            width: 320px;
+            height: auto;
+            margin-bottom: 3.5rem;
+            filter: drop-shadow(0 0 12px rgba(255, 85, 0, 0.2));
+        }
+
+        /* Elegant High-Contrast Shop Redirect Button */
+        .shop-button {
+            display: inline-block;
+            background-color: var(--orange-primary);
+            color: #060606;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 1.1rem 3rem;
+            border-radius: 8px;
+            box-shadow: 0 0 20px var(--orange-glow);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .shop-button:hover {
+            background-color: #ffffff;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Grounded Bottom Footer Segments */
+        .footer-row {
+            width: 100%;
+            padding: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+            pointer-events: auto;
+        }
+
+        .portal-link {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .portal-link a {
+            color: rgba(255, 255, 255, 0.25);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .portal-link a:hover {
+            color: var(--orange-primary);
+            text-shadow: 0 0 8px var(--orange-glow);
+        }
+
+        .footer-help {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .help-link {
+            color: var(--text-muted);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.3s ease;
+            font-weight: 600;
+        }
+
+        .help-link:hover {
+            color: var(--orange-primary);
+        }
+
+        @media (max-width: 600px) {
+            .gateway-card {
+                padding: 4rem 1.5rem;
+            }
+            .brand-vector {
+                width: 250px;
+                margin-bottom: 2.5rem;
+            }
+            .shop-button {
+                padding: 1rem 2rem;
+                font-size: 0.85rem;
+            }
+            .footer-row {
+                flex-direction: column;
+                gap: 1.5rem;
+                justify-content: center;
+                text-align: center;
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <section class="gateway-card" aria-label="Kang Tao Identity Portal">
+            <!-- Vector graphics containing exact geometric shapes matched to image_0958e7.png -->
+            <svg class="brand-vector" viewBox="0 0 310 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- Precision orange trapezoid with vertical left edge -->
+                <polygon points="10,14 90,14 82,56 10,56" fill="#ff5500"/>
+                <!-- Character 1 "康" in exact stickman stroke layout -->
+                <path d="M32,18 L32,24 M18,24 L46,24 M22,24 L22,50 M22,30 L42,30 M32,30 L32,42 M26,35 L38,35 M26,40 L38,40 M28,42 L22,48 M36,42 L42,48" stroke="#060606" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <!-- Character 2 "陶" in exact stickman stroke layout -->
+                <path d="M52,21 L52,51 M52,24 C57,24 57,30 52,30 M52,30 C57,30 57,36 52,36 M60,24 L78,24 M64,29 L74,29 L74,41 L64,41 Z M64,35 L74,35 M69,41 L69,48 M61,48 L77,48" stroke="#060606" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <!-- Perfectly kerned English Wordmark -->
+                <text x="110" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="28" fill="#ffffff" dominant-baseline="central">KANG</text>
+                <text x="210" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="28" fill="#ff5500" dominant-baseline="central">TAO</text>
+            </svg>
+
+            <!-- Clean link redirect to shop -->
+            <a href="https://kangtao.co/shop" class="shop-button">
+                Official Shop
+            </a>
+        </section>
+    </main>
+
+    <footer class="footer-row">
+        <!-- Quiet bottom left help linkage -->
+        <div class="footer-help">
+            For help <a href="https://kangtao.co/help" class="help-link">click here</a>
+        </div>
+        <!-- Quiet bottom right link to the 2077 portal -->
+        <div class="portal-link">
+            <a href="https://2077.kangtao.co" target="_blank" aria-label="Visit the 2077 Portal">
+                // 2077 Portal
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>
